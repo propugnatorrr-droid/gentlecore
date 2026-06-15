@@ -1,0 +1,89 @@
+.card {
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.link:hover .img,
+.link:focus-visible .img {
+  transform: scale(1.045);
+}
+
+.meta {
+  padding-top: var(--s2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.brand {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.model {
+  font-size: 1.4rem;
+  line-height: 1.1;
+  color: var(--charcoal);
+}
+
+.detail {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin-top: 0.35rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.loc {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.5rem;
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.arrow {
+  transition: transform 0.4s var(--ease);
+  color: var(--gold-deep);
+}
+
+.link:hover .arrow {
+  transform: translateX(5px);
+}

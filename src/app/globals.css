@@ -1,0 +1,204 @@
+/* ─────────────────────────────────────────────────────────────
+   Gentle Outlet — global design tokens + base styles
+   Warm ivory ground · charcoal ink · champagne gold · sparing accents.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette */
+  --ivory: #f7f1e8;
+  --parchment: #efe4d4;
+  --charcoal: #111111;
+  --soft-black: #1a1816;
+  --taupe: #b8a894;
+  --gold: #b89b5e;
+  --gold-deep: #9a7f47;
+  --orange: #f37021; /* Hermès-inspired — used very sparingly */
+  --burgundy: #4a1118;
+  --rolex-green: #0b3d2e;
+  --silver: #d8d8d5;
+
+  /* Semantic */
+  --bg: var(--ivory);
+  --bg-alt: var(--parchment);
+  --ink: var(--soft-black);
+  --ink-soft: #4a443c;
+  --ink-faint: #857c6e;
+  --line: rgba(26, 24, 22, 0.14);
+  --line-soft: rgba(26, 24, 22, 0.08);
+  --card: #fbf7f0;
+
+  /* Type */
+  --serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --sans: var(--font-inter), "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Fluid scale */
+  --fs-hero: clamp(3.2rem, 8vw, 7rem);
+  --fs-h1: clamp(2.4rem, 5vw, 4.25rem);
+  --fs-h2: clamp(1.9rem, 3.4vw, 2.9rem);
+  --fs-h3: clamp(1.4rem, 2.1vw, 1.85rem);
+  --fs-body: clamp(1rem, 1.04vw, 1.075rem);
+  --fs-sm: 0.9rem;
+  --fs-label: 0.7rem;
+
+  /* Spacing */
+  --s1: 0.5rem;
+  --s2: 1rem;
+  --s3: 1.5rem;
+  --s4: 2.5rem;
+  --s5: 4rem;
+  --s6: 6rem;
+  --s7: 9rem;
+
+  --measure: 60ch;
+  --shell: min(92vw, 1360px);
+  --shell-narrow: min(90vw, 820px);
+
+  --track: 0.26em;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-h: 76px;
+  --radius: 2px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.005em;
+  color: var(--charcoal);
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+ul { list-style: none; }
+
+/* Selection / focus */
+::selection { background: var(--gold); color: var(--ivory); }
+:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+
+/* ── Layout utilities ───────────────────────────────────────── */
+.shell { width: var(--shell); margin-inline: auto; }
+.shell-narrow { width: var(--shell-narrow); margin-inline: auto; }
+.section { padding-block: var(--s7); }
+.section-tight { padding-block: var(--s6); }
+.bg-alt { background: var(--bg-alt); }
+.hairline { height: 1px; background: var(--line); border: 0; }
+
+/* ── Type utilities ─────────────────────────────────────────── */
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.lede {
+  font-family: var(--serif);
+  font-size: var(--fs-h3);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  font-weight: 400;
+  max-width: var(--measure);
+}
+
+.prose p {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin-bottom: var(--s3);
+}
+.prose p:last-child { margin-bottom: 0; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  padding: 1.05rem 2rem;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  border-radius: var(--radius);
+  transition: background 0.45s var(--ease), color 0.45s var(--ease),
+    border-color 0.45s var(--ease);
+}
+.btn:hover { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+
+.btn-solid { background: var(--ink); color: var(--ivory); }
+.btn-solid:hover { background: transparent; color: var(--ink); }
+
+.btn-gold { border-color: var(--gold); color: var(--gold-deep); }
+.btn-gold:hover { background: var(--gold); border-color: var(--gold); color: var(--ivory); }
+
+.btn-light { border-color: rgba(247, 241, 232, 0.5); color: var(--ivory); }
+.btn-light:hover { background: var(--ivory); color: var(--ink); border-color: var(--ivory); }
+
+.btn-block { width: 100%; }
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: var(--s2);
+  top: -120px;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--ivory);
+  padding: 0.7rem 1.2rem;
+  font-size: var(--fs-label);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  transition: top 0.3s var(--ease);
+}
+.skip-link:focus { top: var(--s2); }
+
+/* Leave room for the sticky mobile CTA bar */
+@media (max-width: 1080px) {
+  body { padding-bottom: 57px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

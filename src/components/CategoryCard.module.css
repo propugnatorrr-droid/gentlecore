@@ -1,0 +1,53 @@
+.card {
+  display: block;
+  position: relative;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line-soft);
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 1.1s var(--ease);
+}
+
+.card:hover .img,
+.card:focus-visible .img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(17, 17, 17, 0.18));
+}
+
+.meta {
+  position: absolute;
+  left: var(--s2);
+  bottom: var(--s2);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.label {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--ivory);
+  line-height: 1;
+}
+
+.caption {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 232, 0.82);
+}
