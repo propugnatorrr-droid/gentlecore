@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { getFeatured, getArchive } from "@/data/products";
 import { site } from "@/lib/site";
@@ -8,6 +7,8 @@ import ProductGrid from "@/components/ProductGrid";
 import CategoryCard from "@/components/CategoryCard";
 import SourceRequestForm from "@/components/SourceRequestForm";
 import CTAButton from "@/components/CTAButton";
+import MaisonStrip from "@/components/MaisonStrip";
+import HeroVisual from "@/components/HeroVisual";
 import styles from "./home.module.css";
 
 const previews = [
@@ -50,22 +51,38 @@ export default function HomePage() {
   return (
     <>
       {/* SECTION 1 — Hero */}
-      <section className={`shell ${styles.hero}`}>
-        <div className={styles.heroGrid}>
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <div className={`shell ${styles.heroGrid}`}>
           <div className={styles.heroText}>
-            <SectionReveal as="span" className={styles.heroEyebrow}>
-              {site.descriptor} — {site.city}
+            <SectionReveal as="div" className={styles.heroEyebrowRow}>
+              <span className={styles.heroEst}>Est. 2016</span>
+              <span className={styles.heroRule} aria-hidden="true" />
+              <span className={styles.heroEyebrow}>{site.descriptor} — {site.city}</span>
             </SectionReveal>
-            <SectionReveal delay={0.08}>
-              <h1 className={styles.heroTitle}>Gentle Outlet</h1>
-            </SectionReveal>
-            <SectionReveal delay={0.16}>
+
+            <h1 className={styles.heroTitle}>
+              <SectionReveal as="span" className={styles.titleClip}>
+                <span className={styles.titleOne}>Gentle</span>
+              </SectionReveal>
+              <SectionReveal as="span" delay={0.12} className={styles.titleClip}>
+                <span className={styles.titleTwo}>
+                  Outlet
+                  <svg className={styles.underline} viewBox="0 0 320 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+                    <path d="M2 14 C 80 4, 240 4, 318 12" stroke="#b89b5e" strokeWidth="2.4" strokeLinecap="round" />
+                    <path d="M6 19 C 90 11, 230 11, 312 17" stroke="#b89b5e" strokeWidth="1.4" strokeLinecap="round" opacity="0.7" />
+                  </svg>
+                </span>
+              </SectionReveal>
+            </h1>
+
+            <SectionReveal delay={0.22}>
               <p className={styles.heroTagline}>{site.tagline}</p>
             </SectionReveal>
-            <SectionReveal delay={0.24}>
+            <SectionReveal delay={0.3}>
               <p className={styles.heroIntro}>{site.intro}</p>
             </SectionReveal>
-            <SectionReveal delay={0.32}>
+            <SectionReveal delay={0.38}>
               <div className={styles.heroCtas}>
                 <CTAButton href="/new-arrivals" variant="solid">View Available Pieces</CTAButton>
                 <CTAButton href="/source-request" variant="gold">Request Private Sourcing</CTAButton>
@@ -73,20 +90,17 @@ export default function HomePage() {
             </SectionReveal>
           </div>
 
-          <SectionReveal delay={0.15} className={styles.heroVisual}>
-            <Image
-              src="/products/hero.svg"
-              alt="A piece from the Gentle Outlet private preview"
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 48vw"
-              className={styles.heroImg}
-              unoptimized
-            />
-            <span className={styles.heroBadge}>Presented for private acquisition</span>
-          </SectionReveal>
+          <HeroVisual />
         </div>
+
+        <span className={styles.scrollCue} aria-hidden="true">
+          <span className={styles.scrollWord}>Scroll</span>
+          <span className={styles.scrollLine} />
+        </span>
       </section>
+
+      {/* Maisons strip */}
+      <MaisonStrip />
 
       {/* SECTION 2 — Private Preview */}
       <section className="shell section-tight">

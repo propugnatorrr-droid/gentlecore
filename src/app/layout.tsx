@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MobileCtaBar from "@/components/MobileCtaBar";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
+        <ScrollProgress />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

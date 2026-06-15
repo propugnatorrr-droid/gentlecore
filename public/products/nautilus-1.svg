@@ -1,21 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
   <defs>
-    <radialGradient id="v" cx="50%" cy="42%" r="70%">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#000000" stop-opacity="0.05"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6efe3"/>
+      <stop offset="1" stop-color="#e7dac6"/>
+    </linearGradient>
+    <radialGradient id="spot" cx="50%" cy="40%" r="55%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.10"/>
     </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
   </defs>
-  <rect width="600" height="750" fill="#f4ece0"/>
-  <rect width="600" height="750" fill="url(#v)"/>
-  <rect x="26" y="26" width="548" height="698" fill="none" stroke="rgba(17,17,17,0.12)"/>
+  <rect width="600" height="750" fill="url(#bg)"/>
+  <rect width="600" height="750" fill="url(#spot)"/>
   
-      <circle cx="300" cy="360" r="136" fill="none" stroke="rgba(17,17,17,0.5)" stroke-width="1.2"/>
-      <circle cx="300" cy="360" r="120" fill="none" stroke="rgba(184,155,94,0.7)" stroke-width="1"/>
-      <line x1="300" y1="360" x2="300" y2="290" stroke="rgba(17,17,17,0.7)" stroke-width="2"/>
-      <line x1="300" y1="360" x2="348" y2="384" stroke="rgba(17,17,17,0.7)" stroke-width="2"/>
-      <circle cx="300" cy="360" r="4" fill="#111"/>
-      <rect x="286" y="198" width="28" height="22" rx="4" fill="none" stroke="rgba(17,17,17,0.5)"/>
-  <text x="300" y="120" text-anchor="middle" font-family="Inter, Helvetica, sans-serif" font-size="12" fill="#857c6e" letter-spacing="6">PATEK PHILIPPE</text>
-  <text x="300" y="636" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-size="30" fill="#111111">Nautilus 5980R</text>
-  <text x="300" y="670" text-anchor="middle" font-family="Inter, Helvetica, sans-serif" font-size="10" fill="#9a7f47" letter-spacing="5">PLATE 1 · GENTLE OUTLET</text>
+  <g>
+    <ellipse cx="300" cy="510" rx="120" ry="16" fill="rgba(20,16,10,0.16)" filter="url(#soft)"/>
+    <rect x="274" y="192" width="52" height="60" rx="10" fill="#b98f63" opacity="0.55"/>
+    <rect x="274" y="468" width="52" height="60" rx="10" fill="#b98f63" opacity="0.55"/>
+    <circle cx="300" cy="360" r="120" fill="#b98f63" opacity="0.16"/>
+    <circle cx="300" cy="360" r="118" fill="none" stroke="#b89b5e" stroke-width="6"/>
+    <circle cx="300" cy="360" r="100" fill="#f7f1e8"/>
+    <line x1="300.0" y1="264.0" x2="300.0" y2="254.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="348.0" y1="276.9" x2="353.0" y2="268.2" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="383.1" y1="312.0" x2="391.8" y2="307.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="396.0" y1="360.0" x2="406.0" y2="360.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="383.1" y1="408.0" x2="391.8" y2="413.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="348.0" y1="443.1" x2="353.0" y2="451.8" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="300.0" y1="456.0" x2="300.0" y2="466.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="252.0" y1="443.1" x2="247.0" y2="451.8" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="216.9" y1="408.0" x2="208.2" y2="413.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="204.0" y1="360.0" x2="194.0" y2="360.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="216.9" y1="312.0" x2="208.2" y2="307.0" stroke="rgba(20,16,10,0.5)" stroke-width="2"/><line x1="252.0" y1="276.9" x2="247.0" y2="268.2" stroke="rgba(20,16,10,0.5)" stroke-width="2"/>
+    <line x1="300" y1="360" x2="300" y2="296" stroke="#141008" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="300" y1="360" x2="344" y2="382" stroke="#141008" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="300" cy="360" r="5" fill="#141008"/>
+    <rect x="360" y="352" width="26" height="16" rx="2" fill="none" stroke="rgba(20,16,10,0.45)"/>
+    <circle cx="422" cy="360" r="8" fill="#b89b5e"/>
+  </g>
+  <rect width="600" height="750" filter="url(#grain)" opacity="0.05"/>
+  <rect x="22" y="22" width="556" height="706" fill="none" stroke="rgba(20,16,10,0.10)"/>
+  <text x="300" y="92" text-anchor="middle" font-family="Inter, Helvetica, sans-serif" font-size="12" letter-spacing="6" fill="rgba(20,16,10,0.45)">PATEK PHILIPPE</text>
+  <text x="300" y="650" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-size="31" fill="#1a1816">Nautilus 5980R</text>
+  <text x="300" y="684" text-anchor="middle" font-family="Inter, Helvetica, sans-serif" font-size="9.5" letter-spacing="5" fill="#b89b5e">N° 01 · GENTLE OUTLET</text>
 </svg>

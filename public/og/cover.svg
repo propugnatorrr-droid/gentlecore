@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f7f1e8"/>
-  <rect x="44" y="44" width="1112" height="542" fill="none" stroke="rgba(17,17,17,0.16)"/>
-  <text x="600" y="290" text-anchor="middle" font-family="Georgia, serif" font-size="78" fill="#111" letter-spacing="10">GENTLE OUTLET</text>
-  <text x="600" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#9a7f47" letter-spacing="6">PRIVATE LUXURY RESALE HOUSE — DUBAI</text>
+  <defs><linearGradient id="o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f1e8"/><stop offset="1" stop-color="#ece0cd"/></linearGradient></defs>
+  <rect width="1200" height="630" fill="url(#o)"/>
+  <rect x="44" y="44" width="1112" height="542" fill="none" stroke="rgba(20,16,10,0.16)"/>
+  <text x="600" y="288" text-anchor="middle" font-family="Georgia, serif" font-size="80" letter-spacing="10" fill="#1a1816">GENTLE OUTLET</text>
+  <text x="600" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" letter-spacing="6" fill="#9a7f47">PRIVATE LUXURY RESALE HOUSE — DUBAI</text>
 </svg>

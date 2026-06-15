@@ -1,11 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100">
-  <rect width="900" height="1100" fill="#efe4d4"/>
-  <rect width="900" height="1100" fill="url(#hv)"/>
-  <defs><radialGradient id="hv" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity="0.4"/><stop offset="1" stop-color="#000" stop-opacity="0.06"/></radialGradient></defs>
-  <rect x="40" y="40" width="820" height="1020" fill="none" stroke="rgba(17,17,17,0.14)"/>
-  <rect x="300" y="420" width="300" height="210" rx="8" fill="none" stroke="rgba(17,17,17,0.5)" stroke-width="1.4"/>
-  <path d="M380 420 q70 -86 140 0" fill="none" stroke="rgba(17,17,17,0.45)" stroke-width="1.4"/>
-  <rect x="426" y="398" width="48" height="44" rx="5" fill="none" stroke="rgba(184,155,94,0.9)" stroke-width="1.6"/>
-  <text x="450" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#857c6e" letter-spacing="8">PRIVATE PREVIEW</text>
-  <text x="450" y="790" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#111" letter-spacing="2">GENTLE OUTLET</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1130" viewBox="0 0 900 1130">
+  <defs>
+    <linearGradient id="hb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4ecdf"/><stop offset="1" stop-color="#e1d0b8"/></linearGradient>
+    <radialGradient id="hs" cx="50%" cy="40%" r="56%"><stop offset="0" stop-color="#fff" stop-opacity="0.62"/><stop offset="0.58" stop-color="#fff" stop-opacity="0.05"/><stop offset="1" stop-color="#000" stop-opacity="0.13"/></radialGradient>
+    <filter id="hsoft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="hgrain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  </defs>
+  <rect width="900" height="1130" fill="url(#hb)"/>
+  <rect width="900" height="1130" fill="url(#hs)"/>
+  <text x="450" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" letter-spacing="9" fill="rgba(20,16,10,0.42)">HERMÈS · PRIVATE PREVIEW</text>
+  <!-- centred handbag, gently scaled -->
+  <g transform="translate(450 560) scale(1.9)">
+    <ellipse cx="0" cy="118" rx="168" ry="22" fill="rgba(20,16,10,0.16)" filter="url(#hsoft)"/>
+    <path d="M-108 -36 q108 -100 216 0 v118 a16 16 0 0 1 -16 16 H-92 a16 16 0 0 1 -16 -16 Z" fill="#ccb89b"/>
+    <path d="M-108 -36 q108 -100 216 0" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+    <path d="M-86 -36 v-8 q86 -78 172 0 v8" fill="none" stroke="#ccb89b" stroke-width="11" stroke-linecap="round"/>
+    <path d="M-82 -36 q82 -72 164 0" fill="none" stroke="rgba(0,0,0,0.16)" stroke-width="1"/>
+    <rect x="-26" y="-46" width="52" height="44" rx="7" fill="none" stroke="#b89b5e" stroke-width="3"/>
+    <circle cx="0" cy="-24" r="8" fill="none" stroke="#b89b5e" stroke-width="3"/>
+    <line x1="-92" y1="-2" x2="92" y2="-2" stroke="rgba(0,0,0,0.10)" stroke-width="1"/>
+    <line x1="-92" y1="84" x2="92" y2="84" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  </g>
+  <rect width="900" height="1130" filter="url(#hgrain)" opacity="0.05"/>
+  <rect x="40" y="40" width="820" height="1050" fill="none" stroke="rgba(20,16,10,0.12)"/>
+  <text x="450" y="1006" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" letter-spacing="6" fill="#9a7f47">N° 01 · GENTLE OUTLET</text>
 </svg>
