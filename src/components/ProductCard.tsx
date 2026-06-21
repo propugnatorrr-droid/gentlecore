@@ -13,6 +13,7 @@ export default function ProductCard({
   priority?: boolean;
 }) {
   const archived = isArchived(product);
+  const second = product.images[1];
   return (
     <article className={styles.card}>
       <Link
@@ -30,6 +31,17 @@ export default function ProductCard({
             priority={priority}
             unoptimized={product.images[0].endsWith(".svg")}
           />
+          {second && (
+            <Image
+              src={`/products/${second}`}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1100px) 33vw, 25vw"
+              className={styles.imgAlt}
+              unoptimized={second.endsWith(".svg")}
+            />
+          )}
         </div>
 
         <div className={styles.meta}>
@@ -37,7 +49,7 @@ export default function ProductCard({
           <h3 className={styles.model}>{product.model}</h3>
           <p className={styles.detail}>{product.detailLine}</p>
           <div className={styles.foot}>
-            <span className={styles.loc}>{product.location}</span>
+            <span className={styles.condition}>{product.condition}</span>
             <StatusTag status={product.status} />
           </div>
           <span className={styles.cta}>

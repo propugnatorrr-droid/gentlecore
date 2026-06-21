@@ -4,28 +4,29 @@
    ───────────────────────────────────────────────────────────── */
 
 :root {
-  /* Palette */
-  --ivory: #f7f1e8;
-  --parchment: #efe4d4;
-  --charcoal: #111111;
-  --soft-black: #1a1816;
-  --taupe: #b8a894;
-  --gold: #b89b5e;
-  --gold-deep: #9a7f47;
-  --orange: #f37021; /* Hermès-inspired — used very sparingly */
-  --burgundy: #4a1118;
-  --rolex-green: #0b3d2e;
-  --silver: #d8d8d5;
+  /* ── Palette — three colours only ──────────────────────────
+     Warm cream ground · near-black ink · one muted-gold accent. */
+  --cream: #f5f2ec;
+  --cream-deep: #ece7dd;   /* faint tonal shift for alt sections — same hue */
+  --near-black: #1a1a1a;
+  --gold: #9a7f47;         /* the single accent */
+  --gold-soft: #b29a64;    /* same hue, lighter — hairlines & hovers only */
 
   /* Semantic */
-  --bg: var(--ivory);
-  --bg-alt: var(--parchment);
-  --ink: var(--soft-black);
-  --ink-soft: #4a443c;
-  --ink-faint: #857c6e;
-  --line: rgba(26, 24, 22, 0.14);
-  --line-soft: rgba(26, 24, 22, 0.08);
-  --card: #fbf7f0;
+  --bg: var(--cream);
+  --bg-alt: var(--cream-deep);
+  --charcoal: var(--near-black);
+  --soft-black: var(--near-black);
+  --gold-deep: var(--gold);
+  --ink: var(--near-black);
+  --ink-soft: #565248;
+  --ink-faint: #8a8276;
+  --line: rgba(26, 26, 26, 0.12);
+  --line-soft: rgba(26, 26, 26, 0.07);
+  --card: #faf7f1;
+  --taupe: #b29a64;
+  --ivory: var(--cream);
+  --parchment: var(--cream-deep);
 
   /* Type */
   --serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
@@ -206,6 +207,24 @@ main, header, footer { position: relative; z-index: 2; }
 .btn-light:hover { color: var(--ink); border-color: var(--ivory); }
 
 .btn-block { width: 100%; }
+
+/* Quiet, underlined text action — calm secondary */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding: 1.05rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  transition: color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
 
 /* Skip link */
 .skip-link {

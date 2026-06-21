@@ -1,13 +1,14 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Variant = "solid" | "outline" | "gold" | "light";
+type Variant = "solid" | "outline" | "gold" | "light" | "ghost";
 
 const cls: Record<Variant, string> = {
   solid: "btn btn-solid",
   outline: "btn",
   gold: "btn btn-gold",
   light: "btn btn-light",
+  ghost: "btn-ghost",
 };
 
 export default function CTAButton({

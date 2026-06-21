@@ -19,6 +19,6 @@
   background: currentColor;
 }
 
-.available { color: var(--rolex-green); }
+.available { color: var(--ink-soft); }
 .reserved { color: var(--gold-deep); }
 .archived { color: var(--ink-faint); }

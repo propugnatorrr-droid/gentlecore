@@ -11,7 +11,7 @@
 }
 
 .solid {
-  background: rgba(247, 241, 232, 0.86);
+  background: rgba(245, 242, 236, 0.88);
   backdrop-filter: blur(14px) saturate(115%);
   border-bottom-color: var(--line);
 }
@@ -111,7 +111,7 @@
 .sheet {
   position: fixed;
   inset: var(--nav-h) 0 0 0;
-  background: var(--ivory);
+  background: var(--bg);
   border-top: 1px solid var(--line);
   padding: var(--s4) 6vw var(--s5);
   display: flex;

@@ -16,7 +16,24 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import DossierForm from "@/components/DossierForm";
 import CTAButton from "@/components/CTAButton";
 import SectionReveal from "@/components/SectionReveal";
+import TrustSection from "@/components/TrustSection";
+import Accordion from "@/components/Accordion";
 import styles from "./product.module.css";
+
+const assurances: { q: string; a: string }[] = [
+  {
+    q: "Authentication",
+    a: "Every piece is examined and verified by specialists before it is presented. Where applicable, original documentation, serials, and date stamps are confirmed. A statement of authenticity accompanies each acquisition.",
+  },
+  {
+    q: "Shipping & Delivery",
+    a: "Fully insured, discreet worldwide shipping arranged per destination, in unbranded packaging. Hand delivery and private viewing are available by appointment. Tracking is shared throughout.",
+  },
+  {
+    q: "Returns & Buyer Protection",
+    a: "If a piece is materially not as described, it may be returned within the agreed window for a full refund. Every detail is disclosed in advance so that there are no surprises — only confidence.",
+  },
+];
 
 type Params = { id: string };
 
@@ -63,7 +80,7 @@ export default function ProductPage({ params }: { params: Params }) {
     ...(product.reference ? { mpn: product.reference } : {}),
     offers: {
       "@type": "Offer",
-      priceCurrency: "AED",
+      priceCurrency: "USD",
       availability: archived
         ? "https://schema.org/SoldOut"
         : product.status === "Reserved"
@@ -82,7 +99,6 @@ export default function ProductPage({ params }: { params: Params }) {
     { k: "Colour", v: product.color },
     { k: "Condition", v: product.condition },
     { k: "Category", v: categoryLabel(product.category) },
-    { k: "Location", v: product.location },
   ];
 
   return (
@@ -133,6 +149,14 @@ export default function ProductPage({ params }: { params: Params }) {
                 <WhatsAppButton pieceName={pieceName} variant="gold" />
               </div>
             )}
+
+            <p className={styles.authNote}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true">
+                <path d="M12 3l7 2.5v5.5c0 4.6-3.1 7.6-7 8.8-3.9-1.2-7-4.2-7-8.8V5.5L12 3z" strokeLinejoin="round" />
+                <path d="M9 11.8l2.2 2.2 4-4.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Authenticated by specialists. Buyer protection on every acquisition.</span>
+            </p>
 
             <dl className={styles.quickFacts}>
               {facts.slice(0, 5).map((f) => (
@@ -191,13 +215,9 @@ export default function ProductPage({ params }: { params: Params }) {
           </section>
 
           <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Private Viewing / Worldwide Inquiry</h2>
+            <h2 className={styles.blockTitle}>Assurances</h2>
             <div className={styles.blockBody}>
-              <p>
-                Private viewing by arrangement. Worldwide buyer inquiries are
-                welcomed, with insured, discreet shipping arranged per destination.
-                Additional photographs and video are available before any acquisition.
-              </p>
+              <Accordion items={assurances} defaultOpen={0} />
             </div>
           </section>
 
@@ -210,6 +230,11 @@ export default function ProductPage({ params }: { params: Params }) {
             </section>
           )}
         </div>
+
+        <TrustSection
+          label="The Gentle Core Standard"
+          heading="Every acquisition, held to the same standard."
+        />
 
         {related.length > 0 && (
           <section className={styles.related} aria-labelledby="related-h">

@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "gentle-outlet",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "rootDir": "C:\\Users\\Usman\\Projects\\gentle-outlet",
+      "port": 3011
+    }
+  ]
+}

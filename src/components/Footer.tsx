@@ -63,6 +63,13 @@ export default function Footer() {
           </div>
         </div>
 
+        <ul className={styles.badges} aria-label="Our standard">
+          <li>Authenticated by specialists</li>
+          <li>Condition graded &amp; fully disclosed</li>
+          <li>Insured, discreet worldwide delivery</li>
+          <li>Buyer protection on every acquisition</li>
+        </ul>
+
         <hr className="hairline" />
 
         <div className={styles.bottom}>

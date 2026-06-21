@@ -57,7 +57,7 @@ export default function DossierForm({ pieceName }: { pieceName?: string }) {
         </div>
         <div className={s.field}>
           <label className={s.label} htmlFor="d-wa">WhatsApp</label>
-          <input className={s.input} id="d-wa" name="whatsapp" inputMode="tel" placeholder="+971 …" />
+          <input className={s.input} id="d-wa" name="whatsapp" inputMode="tel" placeholder="Include country code" />
         </div>
       </div>
 
@@ -85,11 +85,11 @@ export default function DossierForm({ pieceName }: { pieceName?: string }) {
 
       <div className={s.row}>
         <div className={s.field}>
-          <label className={s.label} htmlFor="d-buyer">Buyer type</label>
+          <label className={s.label} htmlFor="d-buyer">Acquisition</label>
           <select className={s.select} id="d-buyer" name="buyerType" defaultValue="">
             <option value="" disabled>Select</option>
-            <option>Dubai</option>
-            <option>International</option>
+            <option>Private viewing by appointment</option>
+            <option>Insured worldwide shipping</option>
           </select>
         </div>
         <div className={s.field}>

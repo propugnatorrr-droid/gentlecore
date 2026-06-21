@@ -73,6 +73,32 @@
   margin-top: 0.2rem;
 }
 
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  padding-bottom: var(--s4);
+}
+.badges li {
+  position: relative;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 236, 0.6);
+  padding-left: 1.2rem;
+}
+.badges li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.36em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 .bottom {
   padding-top: var(--s3);
   display: flex;

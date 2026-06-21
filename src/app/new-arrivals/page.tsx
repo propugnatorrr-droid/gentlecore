@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
-import { getNewArrivals } from "@/data/products";
+import { products, isInquirable } from "@/data/products";
 import PageIntro from "@/components/PageIntro";
-import ProductGrid from "@/components/ProductGrid";
+import CollectionBrowser from "@/components/CollectionBrowser";
 
 export const metadata: Metadata = {
-  title: "New Arrivals",
+  title: "The Collection",
   description:
-    "Recently presented handbags, watches, and jewelry — available for private acquisition worldwide.",
+    "The current collection — rare handbags, watches, and jewellery, each authenticated and available for private acquisition worldwide.",
 };
 
-export default function NewArrivalsPage() {
+export default function CollectionPage() {
+  const available = products.filter(isInquirable);
   return (
     <>
       <PageIntro
-        label="New Arrivals"
-        title="Recently presented."
-        intro="The latest pieces to enter the private preview. Each is offered for private acquisition — request the dossier for full details."
+        label="The Collection"
+        title="Currently presented."
+        intro="Each piece is authenticated, condition-graded, and offered for private acquisition. Filter by category, maison, or condition — then request the dossier for full details."
       />
       <section className="shell section">
-        <ProductGrid products={getNewArrivals()} columns={4} />
+        <CollectionBrowser products={available} />
       </section>
     </>
   );
