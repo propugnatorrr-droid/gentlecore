@@ -65,7 +65,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Mini Kelly II in Bleu Celeste — a serene, hard-to-source shade rendered in structured Epsom calfskin. Crisp lines, palladium hardware, and the quiet authority of one of the most requested silhouettes in modern collecting.",
-    images: ["mini-kelly-1.svg", "mini-kelly-2.svg", "mini-kelly-3.svg"],
+    images: ["/products/mini-kelly-1.svg", "/products/mini-kelly-2.svg", "/products/mini-kelly-3.svg"],
     featured: true,
     newArrival: true,
     collector: true,
@@ -85,7 +85,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Birkin Touch 25 unites Togo calfskin with matte alligator handles and flap — a study in restraint and rarity. Gold hardware warms the black leather; CITES documentation accompanies the piece.",
-    images: ["birkin-touch-1.svg", "birkin-touch-2.svg", "birkin-touch-3.svg"],
+    images: ["/products/birkin-touch-1.svg", "/products/birkin-touch-2.svg", "/products/birkin-touch-3.svg"],
     featured: true,
     newArrival: true,
     collector: true,
@@ -105,7 +105,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "A Constance 24 in deep burgundy exotic leather — the signature H clasp in gold, the proportions impeccable. A piece for the collector who prefers their rarity understated.",
-    images: ["constance-1.svg", "constance-2.svg"],
+    images: ["/products/constance-1.svg", "/products/constance-2.svg"],
     featured: true,
     newArrival: false,
     collector: true,
@@ -127,7 +127,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Day-Date 40 in 18k Everose gold, Ref. 228235, with a chocolate dial set with diamond hour markers on the President bracelet. Quiet warmth and unmistakable presence — full set.",
-    images: ["daydate-1.svg", "daydate-2.svg"],
+    images: ["/products/daydate-1.svg", "/products/daydate-2.svg"],
     featured: true,
     newArrival: true,
     collector: false,
@@ -149,7 +149,7 @@ export const products: Product[] = [
     status: "Reserved",
     overview:
       "The Nautilus Chronograph 5980R-001 in rose gold on a leather strap — the integrated case in precious metal, the flyback chronograph beneath. A serious collector reference, presented with full accompaniments.",
-    images: ["nautilus-1.svg", "nautilus-2.svg"],
+    images: ["/products/nautilus-1.svg", "/products/nautilus-2.svg"],
     featured: true,
     newArrival: false,
     collector: true,
@@ -169,7 +169,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "A Birkin 30 in Gris Perle ostrich — the soft grey punctuated by the natural quill follicles of the leather, finished in gold hardware. Among the most coveted neutrals in exotic collecting.",
-    images: ["birkin-ostrich-1.svg", "birkin-ostrich-2.svg"],
+    images: ["/products/birkin-ostrich-1.svg", "/products/birkin-ostrich-2.svg"],
     featured: true,
     newArrival: true,
     collector: true,
@@ -189,7 +189,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Panthère de Cartier in yellow gold with a diamond-set bezel — supple, sculptural, and unmistakably Cartier. A jewelry-watch in the truest sense.",
-    images: ["panthere-1.svg", "panthere-2.svg"],
+    images: ["/products/panthere-1.svg", "/products/panthere-2.svg"],
     featured: false,
     newArrival: true,
     collector: false,
@@ -209,7 +209,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Love bracelet in 18k yellow gold set with four diamonds — the enduring icon of intentional design, presented with its screwdriver and accompaniments.",
-    images: ["love-bracelet-1.svg", "love-bracelet-2.svg"],
+    images: ["/products/love-bracelet-1.svg", "/products/love-bracelet-2.svg"],
     featured: false,
     newArrival: false,
     collector: false,
@@ -229,7 +229,7 @@ export const products: Product[] = [
     status: "Available",
     overview:
       "The Vintage Alhambra 10-motif long necklace in mother-of-pearl and 18k yellow gold — the lucky clover motif rendered with the house's signature beaded edge.",
-    images: ["alhambra-1.svg", "alhambra-2.svg"],
+    images: ["/products/alhambra-1.svg", "/products/alhambra-2.svg"],
     featured: false,
     newArrival: true,
     collector: true,
@@ -249,7 +249,7 @@ export const products: Product[] = [
     status: "Previously Presented",
     overview:
       "The Classic Flap in medium, black caviar calfskin with gold hardware — the most enduring silhouette in modern handbag collecting. Previously presented by Gentle Outlet.",
-    images: ["chanel-flap-1.svg", "chanel-flap-2.svg"],
+    images: ["/products/chanel-flap-1.svg", "/products/chanel-flap-2.svg"],
     featured: false,
     newArrival: false,
     collector: false,
@@ -269,7 +269,7 @@ export const products: Product[] = [
     status: "Acquired",
     overview:
       "The Kelly Pochette in Rose Sakura Swift — an evening piece of rare delicacy. Acquired through Gentle Outlet; shown here as part of the archive.",
-    images: ["kelly-pochette-1.svg", "kelly-pochette-2.svg"],
+    images: ["/products/kelly-pochette-1.svg", "/products/kelly-pochette-2.svg"],
     featured: false,
     newArrival: false,
     collector: true,
@@ -291,7 +291,7 @@ export const products: Product[] = [
     status: "Previously Presented",
     overview:
       "The Royal Oak 41 Ref. 15500ST in stainless steel with the blue 'Grande Tapisserie' dial — the integrated icon of Gérald Genta's design. Previously presented.",
-    images: ["royal-oak-1.svg", "royal-oak-2.svg"],
+    images: ["/products/royal-oak-1.svg", "/products/royal-oak-2.svg"],
     featured: false,
     newArrival: false,
     collector: true,

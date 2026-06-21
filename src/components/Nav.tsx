@@ -7,13 +7,10 @@ import { WhatsAppIcon } from "./WhatsAppButton";
 import styles from "./Nav.module.css";
 
 const links = [
-  { href: "/new-arrivals", label: "New Arrivals" },
-  { href: "/handbags", label: "Handbags" },
-  { href: "/watches", label: "Watches" },
-  { href: "/jewelry", label: "Jewelry" },
+  { href: "/new-arrivals", label: "Collection" },
   { href: "/archive", label: "Archive" },
-  { href: "/source-request", label: "Source Request" },
-  { href: "/how-to-buy", label: "How to Buy" },
+  { href: "/source-request", label: "Source a Piece" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Nav() {
