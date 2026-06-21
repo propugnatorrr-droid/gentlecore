@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,7 +33,7 @@ export default function Nav() {
     <header className={`${styles.nav} ${scrolled ? styles.solid : ""}`}>
       <div className={`shell ${styles.inner}`}>
         <Link href="/" className={styles.wordmark} onClick={() => setOpen(false)}>
-          Gentle Outlet
+          Gentle Core
         </Link>
 
         <nav className={styles.desktop} aria-label="Primary">

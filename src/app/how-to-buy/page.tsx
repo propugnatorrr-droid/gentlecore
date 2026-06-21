@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
 import CTAButton from "@/components/CTAButton";
@@ -7,14 +7,14 @@ import styles from "../content.module.css";
 export const metadata: Metadata = {
   title: "How to Buy",
   description:
-    "The private acquisition process at Gentle Outlet — inquire, receive the dossier, review, arrange viewing or shipping, and confirm.",
+    "The private acquisition process at Gentle Core — inquire, receive the dossier, review, arrange viewing or shipping, and confirm.",
 };
 
 const steps = [
   { n: "01", name: "Inquire", d: "Request the dossier for a piece, or brief us on what you are seeking. Every conversation is private and obligation-free." },
   { n: "02", name: "Receive Dossier", d: "We respond with price, condition notes, set details, and additional media — everything needed to consider the piece properly." },
   { n: "03", name: "Review Details", d: "Take your time. Request further photographs or video, and ask anything you need to decide with confidence." },
-  { n: "04", name: "Arrange Viewing / Shipping", d: "View in Dubai by appointment, or we arrange insured, discreet worldwide shipping to your location." },
+  { n: "04", name: "Arrange Viewing / Shipping", d: "View privately by appointment, or we arrange insured, discreet worldwide shipping to your location." },
   { n: "05", name: "Confirm Acquisition", d: "Finalise the acquisition privately, with documentation provided for the piece." },
 ];
 
@@ -22,7 +22,7 @@ const dossier = [
   { name: "Condition Notes", d: "A candid account of condition and wear." },
   { name: "Set Details", d: "Precisely what accompanies the piece." },
   { name: "Additional Media", d: "Further photos and video on request." },
-  { name: "Private Viewing", d: "In Dubai by arrangement, or shipping worldwide." },
+  { name: "Private Viewing", d: "By arrangement, or shipping worldwide." },
 ];
 
 export default function HowToBuyPage() {

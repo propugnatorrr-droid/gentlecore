@@ -1,5 +1,5 @@
-// ─────────────────────────────────────────────────────────────
-// Gentle Outlet — central brand & site configuration.
+﻿// ─────────────────────────────────────────────────────────────
+// Gentle Core — central brand & site configuration.
 // Replace PLACEHOLDER values before launch (search repo for "PLACEHOLDER").
 // ─────────────────────────────────────────────────────────────
 
@@ -8,30 +8,29 @@
 export const WHATSAPP_NUMBER = "9715XXXXXXXX";
 
 export const site = {
-  name: "Gentle Outlet",
+  name: "Gentle Core",
   descriptor: "Private Luxury Resale House",
-  city: "Dubai",
-  legalName: "Gentle Outlet",
+  legalName: "Gentle Core Trading LLC",
 
   // PLACEHOLDER — live domain, no trailing slash.
-  url: "https://gentleoutlet.com",
+  url: "https://gentlecore.co",
 
-  tagline: "Private luxury resale, curated in Dubai.",
+  tagline: "Private luxury resale. Worldwide.",
   intro:
     "Rare handbags, watches, jewelry, and accessories — presented through private dossiers for serious buyers worldwide.",
 
-  email: "private@gentleoutlet.com", // PLACEHOLDER
-  instagram: "gentleoutlet",
-  instagramUrl: "https://instagram.com/gentleoutlet",
+  email: "private@gentlecore.co", // PLACEHOLDER
+  instagram: "gentlecore",
+  instagramUrl: "https://instagram.com/gentlecore",
 
   // PLACEHOLDER — confirm boutique / viewing address.
   address: {
     line1: "Private viewing by appointment",
-    line2: "Dubai, United Arab Emirates",
+    line2: "Worldwide",
   },
 
   legalDisclaimer:
-    "Gentle Outlet is an independent luxury resale platform and is not affiliated with the brands featured.",
+    "Gentle Core is an independent luxury resale platform and is not affiliated with the brands featured.",
 } as const;
 
 // Builds a wa.me link with an optional pre-filled message.

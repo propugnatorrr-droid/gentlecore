@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { getFeatured } from "@/data/products";
 import { whatsappLink, dossierMessage } from "@/lib/site";
@@ -22,7 +22,7 @@ export default function HomePage() {
       <section className={styles.hero}>
         <div className={styles.heroLeft}>
           <SectionReveal>
-            <p className={styles.heroKicker}>Private Luxury Resale House · Dubai</p>
+            <p className={styles.heroKicker}>Private Luxury Resale House · Worldwide</p>
           </SectionReveal>
           <SectionReveal delay={0.08}>
             <h1 className={styles.heroHeadline}>
@@ -52,7 +52,7 @@ export default function HomePage() {
           <div className={styles.heroFrame}>
             <Image
               src="/products/hero.svg"
-              alt="A piece from the Gentle Outlet private preview"
+              alt="A piece from the Gentle Core private preview"
               fill
               priority
               sizes="(max-width: 900px) 100vw, 50vw"
@@ -129,7 +129,7 @@ export default function HomePage() {
       <section className={styles.closing}>
         <SectionReveal>
           <p className={styles.closingStatement}>
-            Gentle Outlet is an independent private resale house based in Dubai.
+            Gentle Core is an independent private resale house.
             Every piece is sourced, authenticated, and presented with full condition disclosure.
             No auctions. No uncertainty. Private inquiry only.
           </p>

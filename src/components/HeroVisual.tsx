@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useRef } from "react";
@@ -25,7 +25,7 @@ export default function HeroVisual() {
       <motion.div className={styles.imgWrap} style={{ y, scale }}>
         <Image
           src="/products/hero.svg"
-          alt="A piece from the Gentle Outlet private preview"
+          alt="A piece from the Gentle Core private preview"
           fill
           priority
           sizes="(max-width: 900px) 100vw, 50vw"

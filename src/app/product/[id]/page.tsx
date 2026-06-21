@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const title = `${p.brand} ${p.model}`;
   return {
     title,
-    description: `${title} — ${p.detailLine}. Presented for private acquisition by Gentle Outlet, Dubai.`,
+    description: `${title} — ${p.detailLine}. Presented for private acquisition by Gentle Core.`,
     openGraph: {
       title: `${title} · ${site.name}`,
       description: `${p.detailLine}. Presented for private acquisition.`,
@@ -194,7 +194,7 @@ export default function ProductPage({ params }: { params: Params }) {
             <h2 className={styles.blockTitle}>Private Viewing / Worldwide Inquiry</h2>
             <div className={styles.blockBody}>
               <p>
-                Private viewing in Dubai by arrangement. Worldwide buyer inquiries are
+                Private viewing by arrangement. Worldwide buyer inquiries are
                 welcomed, with insured, discreet shipping arranged per destination.
                 Additional photographs and video are available before any acquisition.
               </p>

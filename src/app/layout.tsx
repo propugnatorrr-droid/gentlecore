@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
@@ -23,26 +23,26 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Gentle Outlet — Private Luxury Resale House Dubai",
-    template: "%s · Gentle Outlet",
+    default: "Gentle Core — Private Luxury Resale House",
+    template: "%s · Gentle Core",
   },
   description:
-    "Rare handbags, watches, jewelry, and accessories curated in Dubai and presented through private dossiers for serious buyers worldwide.",
+    "Rare handbags, watches, jewelry, and accessories presented through private dossiers for serious buyers worldwide.",
   keywords: [
-    "luxury resale Dubai",
-    "Hermès Birkin Dubai",
-    "Rolex Patek Philippe Dubai",
+    "luxury resale",
+    "Hermès Birkin",
+    "Rolex Patek Philippe",
     "rare handbags",
     "private luxury sourcing",
   ],
   openGraph: {
-    title: "Gentle Outlet — Private Luxury Resale House Dubai",
+    title: "Gentle Core — Private Luxury Resale House",
     description:
-      "Rare handbags, watches, jewelry, and accessories curated in Dubai and presented through private dossiers for serious buyers worldwide.",
+      "Rare handbags, watches, jewelry, and accessories presented through private dossiers for serious buyers worldwide.",
     url: site.url,
     siteName: site.name,
     images: [{ url: "/og/cover.svg", width: 1200, height: 630, alt: site.name }],
-    locale: "en_AE",
+    locale: "en_US",
     type: "website",
   },
   twitter: { card: "summary_large_image" },

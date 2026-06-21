@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { whatsappLink } from "@/lib/site";
@@ -14,7 +14,7 @@ export default function ContactForm() {
     const f = new FormData(e.currentTarget);
     // TODO: connect to a real backend / email service. Mock submit for now.
     const msg = [
-      "Enquiry — Gentle Outlet",
+      "Enquiry — Gentle Core",
       `Name: ${f.get("name") || "—"}`,
       `Location: ${f.get("location") || "—"}`,
       `Email: ${f.get("email") || "—"}`,

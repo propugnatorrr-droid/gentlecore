@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
@@ -7,7 +7,7 @@ import styles from "../content.module.css";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Gentle Outlet is a private luxury resale house in Dubai, presenting rare handbags, watches, jewelry, and accessories for private acquisition worldwide.",
+    "Gentle Core is a private luxury resale house presenting rare handbags, watches, jewelry, and accessories for private acquisition worldwide.",
 };
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
       <PageIntro
         label="About"
         title="A private house for rare and considered pieces."
-        intro="Gentle Outlet is a private luxury resale house in Dubai, presenting collector handbags, watches, jewelry, and accessories — quietly, and for serious buyers."
+        intro="Gentle Core is a private luxury resale house presenting collector handbags, watches, jewelry, and accessories — quietly, and for serious buyers worldwide."
       />
 
       <section className="shell">
@@ -31,14 +31,14 @@ export default function AboutPage() {
               built around the piece.
             </p>
             <p>
-              Based in Dubai, we serve clients across the world. Many find us through
+              We serve clients across the world. Many find us through
               referral; others arrive seeking a single, specific grail. In both cases the
               standard is the same.
             </p>
             <ul className={styles.facts}>
               <li className={styles.fact}>
-                <span className={styles.factK}>Dubai</span>
-                <span className={styles.factV}>PRIVATE VIEWING BY APPOINTMENT</span>
+                <span className={styles.factK}>Private Viewing</span>
+                <span className={styles.factV}>BY APPOINTMENT</span>
               </li>
               <li className={styles.fact}>
                 <span className={styles.factK}>Worldwide</span>
@@ -79,7 +79,7 @@ export default function AboutPage() {
           <div className={styles.body}>
             <h2>An independent resale platform.</h2>
             <p>
-              Gentle Outlet is an independent luxury resale platform and is not affiliated
+              Gentle Core is an independent luxury resale platform and is not affiliated
               with the brands featured. Brand names are used only to describe the genuine
               pieces we present. All trademarks remain the property of their respective
               owners.

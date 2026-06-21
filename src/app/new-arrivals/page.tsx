@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const metadata: Metadata = {
   title: "New Arrivals",
   description:
-    "Recently presented handbags, watches, and jewelry — curated in Dubai and available for private acquisition.",
+    "Recently presented handbags, watches, and jewelry — available for private acquisition worldwide.",
 };
 
 export default function NewArrivalsPage() {

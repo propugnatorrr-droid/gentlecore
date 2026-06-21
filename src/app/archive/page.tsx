@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { getArchive } from "@/data/products";
 import PageIntro from "@/components/PageIntro";
 import ProductGrid from "@/components/ProductGrid";
@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const metadata: Metadata = {
   title: "The Archive",
   description:
-    "Selected pieces previously presented and acquired through Gentle Outlet — a record of the house's curation.",
+    "Selected pieces previously presented and acquired through Gentle Core — a record of the house's curation.",
 };
 
 export default function ArchivePage() {
@@ -15,7 +15,7 @@ export default function ArchivePage() {
       <PageIntro
         label="The Archive"
         title="Previously presented."
-        intro="Selected pieces previously presented by Gentle Outlet. Shown as a record of our curation — to source something comparable, submit a private request."
+        intro="Selected pieces previously presented by Gentle Core. Shown as a record of our curation — to source something comparable, submit a private request."
       />
       <section className="shell section">
         <ProductGrid

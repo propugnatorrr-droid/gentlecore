@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { site, whatsappLink, dossierMessage } from "@/lib/site";
 import styles from "./Footer.module.css";
 
@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="shell">
         <div className={styles.top}>
           <div className={styles.brandCol}>
-            <span className={styles.wordmark}>Gentle Outlet</span>
+            <span className={styles.wordmark}>Gentle Core</span>
             <p className={styles.descriptor}>
               {site.descriptor} — {site.city}
             </p>

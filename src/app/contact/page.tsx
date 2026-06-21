@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { site, whatsappLink, dossierMessage } from "@/lib/site";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
@@ -10,7 +10,7 @@ import local from "./contact.module.css";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Gentle Outlet — WhatsApp, email, and Instagram. Private viewing in Dubai by appointment; worldwide buyer inquiries accepted.",
+    "Contact Gentle Core — WhatsApp, email, and Instagram. Private viewing by appointment; worldwide buyer inquiries accepted.",
 };
 
 export default function ContactPage() {
@@ -19,7 +19,7 @@ export default function ContactPage() {
       <PageIntro
         label="Contact"
         title="Begin a private conversation."
-        intro="WhatsApp is the fastest way to reach us. Private viewing in Dubai by appointment; worldwide buyer inquiries accepted."
+        intro="WhatsApp is the fastest way to reach us. Private viewing by appointment; worldwide buyer inquiries accepted."
       />
 
       <section className="shell section">

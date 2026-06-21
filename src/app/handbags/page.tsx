@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const metadata: Metadata = {
   title: "Handbags",
   description:
-    "Rare and collector handbags — Hermès, Chanel, and more — presented through private dossiers in Dubai.",
+    "Rare and collector handbags — Hermès, Chanel, and more — presented through private dossiers worldwide.",
 };
 
 export default function HandbagsPage() {

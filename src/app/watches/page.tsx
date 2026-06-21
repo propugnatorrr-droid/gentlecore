@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const metadata: Metadata = {
   title: "Watches",
   description:
-    "Collector watches — Rolex, Patek Philippe, Audemars Piguet, Cartier — presented through private dossiers in Dubai.",
+    "Collector watches — Rolex, Patek Philippe, Audemars Piguet, Cartier — presented through private dossiers worldwide.",
 };
 
 export default function WatchesPage() {

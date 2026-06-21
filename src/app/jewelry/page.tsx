@@ -6,7 +6,7 @@ import ProductGrid from "@/components/ProductGrid";
 export const metadata: Metadata = {
   title: "Jewelry",
   description:
-    "Fine and signed jewelry — Cartier, Van Cleef & Arpels, and more — presented through private dossiers in Dubai.",
+    "Fine and signed jewelry — Cartier, Van Cleef & Arpels, and more — presented through private dossiers worldwide.",
 };
 
 export default function JewelryPage() {

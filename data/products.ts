@@ -1,5 +1,5 @@
-// ─────────────────────────────────────────────────────────────
-// Gentle Outlet — catalogue (no database; this file is the source of truth).
+﻿// ─────────────────────────────────────────────────────────────
+// Gentle Core — catalogue (no database; this file is the source of truth).
 //
 // To add a piece:
 //   1. Drop photos in /public/products/ (multiple angles).
@@ -248,7 +248,7 @@ export const products: Product[] = [
     location: "Dubai",
     status: "Previously Presented",
     overview:
-      "The Classic Flap in medium, black caviar calfskin with gold hardware — the most enduring silhouette in modern handbag collecting. Previously presented by Gentle Outlet.",
+      "The Classic Flap in medium, black caviar calfskin with gold hardware — the most enduring silhouette in modern handbag collecting. Previously presented by Gentle Core.",
     images: ["/products/chanel-flap-1.svg", "/products/chanel-flap-2.svg"],
     featured: false,
     newArrival: false,
@@ -268,7 +268,7 @@ export const products: Product[] = [
     location: "Dubai",
     status: "Acquired",
     overview:
-      "The Kelly Pochette in Rose Sakura Swift — an evening piece of rare delicacy. Acquired through Gentle Outlet; shown here as part of the archive.",
+      "The Kelly Pochette in Rose Sakura Swift — an evening piece of rare delicacy. Acquired through Gentle Core; shown here as part of the archive.",
     images: ["/products/kelly-pochette-1.svg", "/products/kelly-pochette-2.svg"],
     featured: false,
     newArrival: false,

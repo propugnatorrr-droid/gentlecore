@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
@@ -7,7 +7,7 @@ import styles from "../content.module.css";
 export const metadata: Metadata = {
   title: "Privacy & Terms",
   description:
-    "Privacy and terms for Gentle Outlet — how enquiries and personal data are handled, and the terms under which pieces are presented.",
+    "Privacy and terms for Gentle Core — how enquiries and personal data are handled, and the terms under which pieces are presented.",
 };
 
 const sections = [
@@ -32,7 +32,7 @@ const sections = [
     h: "Pricing & acquisition",
     body: [
       "No prices are listed publicly; each piece is presented for private acquisition, with price shared in the dossier. Availability is confirmed at the time of enquiry, as pieces may be reserved or move on.",
-      "Viewing in Dubai is by appointment. Worldwide buyer inquiries are accepted, with insured, discreet shipping arranged per destination. Any applicable duties or taxes are the responsibility of the recipient.",
+      "Private viewing is by appointment. Worldwide buyer inquiries are accepted, with insured, discreet shipping arranged per destination. Any applicable duties or taxes are the responsibility of the recipient.",
     ],
   },
   {

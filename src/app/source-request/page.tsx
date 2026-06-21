@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
 import SourceRequestForm from "@/components/SourceRequestForm";
@@ -7,7 +7,7 @@ import styles from "../content.module.css";
 export const metadata: Metadata = {
   title: "Source by Request",
   description:
-    "Searching for a specific Hermès, Rolex, Patek Philippe, Cartier, Chanel, or rare collector piece? Submit a private request to Gentle Outlet.",
+    "Searching for a specific Hermès, Rolex, Patek Philippe, Cartier, Chanel, or rare collector piece? Submit a private request to Gentle Core.",
 };
 
 export default function SourceRequestPage() {
@@ -31,7 +31,7 @@ export default function SourceRequestPage() {
               </p>
               <p>
                 Sourcing covers handbags, watches, jewelry, and rare collector accessories.
-                Dubai viewing by arrangement; worldwide buyer inquiries accepted.
+                Private viewing by arrangement; worldwide buyer inquiries accepted.
               </p>
             </div>
           </aside>
