@@ -27,7 +27,7 @@ export default function Footer() {
           <div className={styles.brandCol}>
             <span className={styles.wordmark}>Gentle Core</span>
             <p className={styles.descriptor}>
-              {site.descriptor} — {site.city}
+              {site.descriptor}
             </p>
             <p className={styles.blurb}>
               Rare handbags, watches, jewelry, and accessories presented for private
