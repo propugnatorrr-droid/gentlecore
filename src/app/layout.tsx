@@ -1,9 +1,11 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MobileCtaBar from "@/components/MobileCtaBar";
+import CustomCursor from "@/components/CustomCursor";
+import GrainOverlay from "@/components/GrainOverlay";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -54,6 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
+        <CustomCursor />
+        <GrainOverlay />
         <Nav />
         <main id="main">{children}</main>
         <Footer />
