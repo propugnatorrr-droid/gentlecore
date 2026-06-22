@@ -1,16 +1,15 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { whatsappLink, dossierMessage } from "@/lib/site";
-import { WhatsAppIcon } from "./WhatsAppButton";
 import styles from "./Nav.module.css";
 
 const links = [
-  { href: "/new-arrivals", label: "Collection" },
+  { href: "/collection", label: "Collection" },
   { href: "/archive", label: "Archive" },
-  { href: "/source-request", label: "Source a Piece" },
-  { href: "/contact", label: "Contact" },
+  { href: "/journal", label: "Journal" },
+  { href: "/atelier", label: "Atelier" },
 ];
 
 export default function Nav() {
@@ -18,7 +17,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -32,27 +31,35 @@ export default function Nav() {
   return (
     <header className={`${styles.nav} ${scrolled ? styles.solid : ""}`}>
       <div className={`shell ${styles.inner}`}>
-        <Link href="/" className={styles.wordmark} onClick={() => setOpen(false)}>
-          Gentle Core
-        </Link>
-
-        <nav className={styles.desktop} aria-label="Primary">
-          {links.map((l) => (
+        <nav className={styles.leftLinks} aria-label="Primary left">
+          {links.slice(0, 2).map((l) => (
             <Link key={l.href} href={l.href} className={styles.link}>
               {l.label}
             </Link>
           ))}
+        </nav>
+
+        <Link href="/" className={styles.wordmark} onClick={() => setOpen(false)}>
+          Gentle Core
+        </Link>
+
+        <div className={styles.rightGroup}>
+          <nav className={styles.rightLinks} aria-label="Primary right">
+            {links.slice(2).map((l) => (
+              <Link key={l.href} href={l.href} className={styles.link}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
           <a
-            className={styles.wa}
+            className={styles.inquire}
             href={whatsappLink(dossierMessage())}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Contact on WhatsApp"
           >
-            <WhatsAppIcon size={15} />
-            WhatsApp
+            Inquire
           </a>
-        </nav>
+        </div>
 
         <button
           className={styles.burger}
@@ -66,30 +73,29 @@ export default function Nav() {
       </div>
 
       {open && (
-        <div className={styles.sheet}>
+        <div className={styles.sheet} aria-modal="true" role="dialog">
           <nav className={styles.sheetNav} aria-label="Mobile">
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} className={styles.sheetLink} onClick={() => setOpen(false)}>
+            {links.map((l, i) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={styles.sheetLink}
+                style={{ animationDelay: `${i * 60}ms` }}
+                onClick={() => setOpen(false)}
+              >
                 {l.label}
               </Link>
             ))}
-            <Link href="/contact" className={styles.sheetLink} onClick={() => setOpen(false)}>
-              Contact
-            </Link>
           </nav>
-          <div className={styles.sheetActions}>
-            <a
-              className="btn btn-gold btn-block"
-              href={whatsappLink(dossierMessage())}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon /> WhatsApp
-            </a>
-            <Link className="btn btn-solid btn-block" href="/source-request" onClick={() => setOpen(false)}>
-              Source by Request
-            </Link>
-          </div>
+          <a
+            className={`btn btn-gold btn-block ${styles.sheetWa}`}
+            href={whatsappLink(dossierMessage())}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            Begin a Private Inquiry
+          </a>
         </div>
       )}
     </header>

@@ -28,25 +28,28 @@ export type Status =
   | "Acquired";
 
 export interface Product {
-  id: string; // slug, used in URLs
+  id: string;
   brand: string;
   model: string;
   category: CategorySlug;
-  material: string; // primary material line
-  hardware: string; // hardware / metal
-  detailLine: string; // short "material · hardware" line for cards
+  material: string;
+  hardware: string;
+  detailLine: string;
   color: string;
-  condition: string; // condition headline (notes provided in dossier)
-  setContents: string[]; // what accompanies the piece
-  location: string; // e.g. "Dubai" / "On request"
+  condition: string;
+  setContents: string[];
+  location: string;
   status: Status;
-  year?: string; // production year / period if known
-  reference?: string; // watch ref. or similar
-  overview: string; // editorial paragraph
-  images: string[]; // filenames in /public
+  year?: string;
+  reference?: string;
+  overview: string;
+  provenance?: string;
+  dimensions?: string;
+  conditionNotes?: string;
+  images: string[];
   featured: boolean;
   newArrival: boolean;
-  collector: boolean; // "Collector Pieces" preview
+  collector: boolean;
 }
 
 export const products: Product[] = [

@@ -1,81 +1,67 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { site, whatsappLink, dossierMessage } from "@/lib/site";
 import styles from "./Footer.module.css";
 
-const explore = [
-  { href: "/new-arrivals", label: "New Arrivals" },
-  { href: "/handbags", label: "Handbags" },
-  { href: "/watches", label: "Watches" },
-  { href: "/jewelry", label: "Jewelry" },
+const nav = [
+  { href: "/collection", label: "Collection" },
   { href: "/archive", label: "Archive" },
-];
-
-const house = [
-  { href: "/source-request", label: "Source Request" },
+  { href: "/journal", label: "Journal" },
+  { href: "/atelier", label: "Atelier" },
+  { href: "/source-request", label: "Source a Piece" },
   { href: "/how-to-buy", label: "How to Buy" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/privacy", label: "Privacy & Terms" },
+  { href: "/privacy", label: "Privacy" },
 ];
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <div className="shell">
-        <div className={styles.top}>
-          <div className={styles.brandCol}>
-            <span className={styles.wordmark}>Gentle Core</span>
-            <p className={styles.descriptor}>
-              {site.descriptor}
-            </p>
-            <p className={styles.blurb}>
-              Rare handbags, watches, jewelry, and accessories presented for private
-              acquisition.
-            </p>
-          </div>
-
-          <nav className={styles.col} aria-label="Collections">
-            <h3 className={styles.colTitle}>Collections</h3>
-            {explore.map((l) => (
-              <Link key={l.href} href={l.href}>{l.label}</Link>
-            ))}
-          </nav>
-
-          <nav className={styles.col} aria-label="The House">
-            <h3 className={styles.colTitle}>The House</h3>
-            {house.map((l) => (
-              <Link key={l.href} href={l.href}>{l.label}</Link>
-            ))}
-          </nav>
-
-          <div className={styles.col}>
-            <h3 className={styles.colTitle}>Private Enquiries</h3>
-            <a href={whatsappLink(dossierMessage())} target="_blank" rel="noopener noreferrer">
-              WhatsApp
-            </a>
-            <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
-              Instagram
-            </a>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-            <p className={styles.addr}>{site.address.line1}</p>
-            <p className={styles.addr}>{site.address.line2}</p>
-          </div>
+      <div className={`shell ${styles.inner}`}>
+        <div className={styles.left}>
+          <span className={styles.wordmark}>Gentle Core</span>
+          <p className={styles.tagline}><em>Private luxury resale. Worldwide.</em></p>
         </div>
 
-        <ul className={styles.badges} aria-label="Our standard">
-          <li>Authenticated by specialists</li>
-          <li>Condition graded &amp; fully disclosed</li>
-          <li>Insured, discreet worldwide delivery</li>
-          <li>Buyer protection on every acquisition</li>
-        </ul>
+        <nav className={styles.center} aria-label="Footer navigation">
+          {nav.map((l, i) => (
+            <span key={l.href}>
+              <Link href={l.href} className={styles.navLink}>{l.label}</Link>
+              {i < nav.length - 1 && <span className={styles.sep} aria-hidden="true" />}
+            </span>
+          ))}
+        </nav>
 
+        <address className={styles.right}>
+          <p className={styles.contactLabel}>Private Enquiries</p>
+          <a
+            className={styles.contactLink}
+            href={whatsappLink(dossierMessage())}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp
+          </a>
+          <a className={styles.contactLink} href={`mailto:${site.email}`}>{site.email}</a>
+          <p className={styles.contactMuted}>{site.address.line1}</p>
+          <a
+            className={styles.instagramLink}
+            href={site.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Follow @{site.instagram}
+          </a>
+        </address>
+      </div>
+
+      <div className={`shell ${styles.bottom}`}>
         <hr className="hairline" />
-
-        <div className={styles.bottom}>
-          <p className={styles.disclaimer}>{site.legalDisclaimer}</p>
-          <p className={styles.copy}>© {year} {site.legalName}. All rights reserved.</p>
-        </div>
+        <p className={styles.legal}>
+          <em>
+            © {year} {site.legalName}. All rights reserved. {site.legalDisclaimer}
+          </em>
+        </p>
       </div>
     </footer>
   );

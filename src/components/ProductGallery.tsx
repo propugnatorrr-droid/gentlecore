@@ -12,23 +12,11 @@ export default function ProductGallery({
   alt: string;
 }) {
   const [active, setActive] = useState(0);
-  const src = (file: string) => `/products/${file}`;
+  const src = (f: string) => `/products/${f}`;
+  const isSvg = (f: string) => f.endsWith(".svg");
 
   return (
     <div className={styles.gallery}>
-      <div className={styles.main}>
-        <Image
-          key={images[active]}
-          src={src(images[active])}
-          alt={alt}
-          fill
-          priority
-          sizes="(max-width: 900px) 100vw, 55vw"
-          className={styles.mainImg}
-          unoptimized={images[active].endsWith(".svg")}
-        />
-      </div>
-
       {images.length > 1 && (
         <div className={styles.thumbs} role="tablist" aria-label="Product images">
           {images.map((img, i) => (
@@ -36,15 +24,42 @@ export default function ProductGallery({
               key={img}
               role="tab"
               aria-selected={active === i}
-              aria-label={`View image ${i + 1} of ${images.length}`}
-              className={`${styles.thumb} ${active === i ? styles.active : ""}`}
+              aria-label={`Image ${i + 1} of ${images.length}`}
+              className={`${styles.thumb} ${active === i ? styles.thumbActive : ""}`}
               onClick={() => setActive(i)}
             >
-              <Image src={src(img)} alt="" fill sizes="90px" className={styles.thumbImg} unoptimized={img.endsWith(".svg")} />
+              <Image
+                src={src(img)}
+                alt=""
+                fill
+                sizes="80px"
+                className={styles.thumbImg}
+                unoptimized={isSvg(img)}
+              />
             </button>
           ))}
         </div>
       )}
+
+      <div className={styles.main}>
+        {images.map((img, i) => (
+          <div
+            key={img}
+            className={`${styles.mainSlide} ${i === active ? styles.mainSlideActive : ""}`}
+            aria-hidden={i !== active}
+          >
+            <Image
+              src={src(img)}
+              alt={i === 0 ? alt : ""}
+              fill
+              priority={i === 0}
+              sizes="(max-width: 900px) 100vw, 60vw"
+              className={styles.mainImg}
+              unoptimized={isSvg(img)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

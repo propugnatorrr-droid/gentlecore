@@ -1,62 +1,67 @@
 .gallery {
   display: flex;
-  flex-direction: column;
-  gap: var(--s2);
-}
-
-.main {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  cursor: zoom-in;
-}
-
-.mainImg {
-  object-fit: cover;
-  animation: fade 0.6s var(--ease);
-  transition: transform 0.9s var(--ease);
-}
-
-/* Gentle close-up on hover — reveals condition detail */
-.main:hover .mainImg {
-  transform: scale(1.35);
-}
-
-@keyframes fade {
-  from { opacity: 0.35; }
-  to { opacity: 1; }
+  flex-direction: row;
+  gap: var(--space-s);
+  height: 80vh;
+  min-height: 500px;
 }
 
 .thumbs {
   display: flex;
-  gap: var(--s2);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 72px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
+.thumbs::-webkit-scrollbar { display: none; }
 
 .thumb {
   position: relative;
-  width: 84px;
-  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border: 1px solid var(--line);
   overflow: hidden;
-  background: var(--card);
-  border: 1px solid var(--line-soft);
-  padding: 0;
-  opacity: 0.62;
-  transition: opacity 0.4s var(--ease), border-color 0.4s var(--ease);
+  background: var(--ground-deep);
+  transition: border-color 0.3s var(--ease);
 }
 
-.thumb:hover { opacity: 0.85; }
-
-.active {
-  opacity: 1;
+.thumbActive {
   border-color: var(--gold);
 }
 
-.thumbImg { object-fit: cover; }
+.thumbImg {
+  object-fit: cover;
+  transition: transform 0.4s var(--ease);
+}
+.thumb:hover .thumbImg { transform: scale(1.08); }
 
-@media (max-width: 640px) {
-  .thumbs { overflow-x: auto; flex-wrap: nowrap; }
-  .thumb { flex-shrink: 0; width: 70px; }
+.main {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: var(--ground-deep);
+}
+
+.mainSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.mainSlideActive { opacity: 1; }
+
+.mainImg {
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.mainSlideActive:hover .mainImg { transform: scale(1.04); }
+
+@media (max-width: 768px) {
+  .gallery { flex-direction: column; height: auto; }
+  .thumbs { flex-direction: row; width: auto; height: 64px; overflow-x: auto; }
+  .thumb { width: 64px; height: 64px; }
+  .main { aspect-ratio: 4/5; }
 }

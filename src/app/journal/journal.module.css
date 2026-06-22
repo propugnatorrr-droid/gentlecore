@@ -1,0 +1,109 @@
+.page {
+  padding-top: calc(var(--nav-h) + var(--space-l));
+  padding-bottom: var(--space-xl);
+}
+
+.header {
+  width: var(--shell);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  font-weight: 400;
+  max-width: 20ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl) var(--space-l);
+}
+
+.card { display: flex; flex-direction: column; }
+
+.cardFeatured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-l);
+  align-items: end;
+}
+
+.cardLink {
+  display: contents;
+  color: inherit;
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--ground-deep);
+}
+.cardFeatured .imageWrap { aspect-ratio: 16/9; }
+
+.image {
+  object-fit: cover;
+  transition: transform 1.5s var(--ease), filter 1.2s var(--ease);
+}
+.cardLink:hover .image { transform: scale(1.03); filter: brightness(0.9); }
+
+.cardMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding-top: var(--space-m);
+}
+.cardFeatured .cardMeta { padding-top: 0; }
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.category {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.date {
+  font-family: var(--mono);
+  font-size: var(--fs-mono);
+  color: var(--ink-faint);
+}
+
+.cardTitle {
+  font-family: var(--serif);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.cardFeatured .cardTitle { font-size: var(--fs-h1); }
+.cardLink:hover .cardTitle { color: var(--gold); }
+
+.excerpt {
+  color: var(--ink-soft);
+  max-width: 50ch;
+  line-height: 1.7;
+}
+
+@media (max-width: 1080px) {
+  .cardFeatured { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .cardFeatured { grid-column: auto; }
+}

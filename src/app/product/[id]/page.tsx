@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -12,28 +13,8 @@ import { site } from "@/lib/site";
 import ProductGallery from "@/components/ProductGallery";
 import ProductGrid from "@/components/ProductGrid";
 import StatusTag from "@/components/StatusTag";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import DossierForm from "@/components/DossierForm";
-import CTAButton from "@/components/CTAButton";
-import SectionReveal from "@/components/SectionReveal";
-import TrustSection from "@/components/TrustSection";
-import Accordion from "@/components/Accordion";
+import ConversationalInquiry from "@/components/ConversationalInquiry";
 import styles from "./product.module.css";
-
-const assurances: { q: string; a: string }[] = [
-  {
-    q: "Authentication",
-    a: "Every piece is examined and verified by specialists before it is presented. Where applicable, original documentation, serials, and date stamps are confirmed. A statement of authenticity accompanies each acquisition.",
-  },
-  {
-    q: "Shipping & Delivery",
-    a: "Fully insured, discreet worldwide shipping arranged per destination, in unbranded packaging. Hand delivery and private viewing are available by appointment. Tracking is shared throughout.",
-  },
-  {
-    q: "Returns & Buyer Protection",
-    a: "If a piece is materially not as described, it may be returned within the agreed window for a full refund. Every detail is disclosed in advance so that there are no surprises — only confidence.",
-  },
-];
 
 type Params = { id: string };
 
@@ -52,10 +33,16 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       title: `${title} · ${site.name}`,
       description: `${p.detailLine}. Presented for private acquisition.`,
       images: [{ url: `/products/${p.images[0]}`, alt: title }],
-      type: "website",
     },
   };
 }
+
+const STATUS_COLOR: Record<string, string> = {
+  Available: "#4a7c59",
+  Reserved: "#c47c1a",
+  "Previously Presented": "#8a8276",
+  Acquired: "#8a8276",
+};
 
 export default function ProductPage({ params }: { params: Params }) {
   const product = getProduct(params.id);
@@ -64,7 +51,6 @@ export default function ProductPage({ params }: { params: Params }) {
   const archived = isArchived(product);
   const related = getRelated(product);
   const pieceName = `${product.brand} ${product.model}`;
-  const pageUrl = `${site.url}/product/${product.id}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -86,166 +72,136 @@ export default function ProductPage({ params }: { params: Params }) {
         : product.status === "Reserved"
         ? "https://schema.org/LimitedAvailability"
         : "https://schema.org/InStock",
-      url: pageUrl,
+      url: `${site.url}/product/${product.id}`,
       seller: { "@type": "Organization", name: site.legalName },
     },
   };
 
-  const facts: { k: string; v: string }[] = [
+  const reportRows = [
     { k: "Material", v: product.material },
     { k: "Hardware", v: product.hardware },
-    ...(product.reference ? [{ k: "Reference", v: product.reference }] : []),
-    ...(product.year ? [{ k: "Year", v: product.year }] : []),
     { k: "Colour", v: product.color },
+    ...(product.year ? [{ k: "Year", v: product.year }] : []),
+    ...(product.reference ? [{ k: "Reference", v: product.reference }] : []),
     { k: "Condition", v: product.condition },
+    ...(product.dimensions ? [{ k: "Dimensions", v: product.dimensions }] : []),
     { k: "Category", v: categoryLabel(product.category) },
   ];
 
+  const statusColor = STATUS_COLOR[product.status] ?? "#8a8276";
+
   return (
     <article className={styles.page}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-      <div className="shell">
-        <nav className={styles.crumbs} aria-label="Breadcrumb">
-          <Link href={`/${product.category}`}>{categoryLabel(product.category)}</Link>
-          <span aria-hidden="true">/</span>
-          <span>{product.model}</span>
-        </nav>
+      {/* ── HERO ZONE — full viewport, edge-to-edge ── */}
+      <div className={styles.heroZone}>
+        <div className={styles.heroImage}>
+          <Image
+            src={`/products/${product.images[0]}`}
+            alt={pieceName}
+            fill
+            priority
+            sizes="100vw"
+            className={styles.heroImg}
+            unoptimized={product.images[0].endsWith(".svg")}
+          />
+          <div className={styles.heroOverlay} />
+        </div>
 
-        <div className={styles.layout}>
-          <div className={styles.galleryCol}>
-            <ProductGallery images={product.images} alt={pieceName} />
-          </div>
+        <Link href="/collection" className={styles.backLink}>
+          ← Collection
+        </Link>
 
-          <div className={styles.panel}>
-            <span className={styles.brand}>{product.brand}</span>
-            <h1 className={styles.model}>{product.model}</h1>
-            {product.reference && <span className={styles.ref}>{product.reference}</span>}
-            <StatusTag status={product.status} />
-            <p className={styles.detailLine}>{product.detailLine}</p>
+        <div className={styles.heroText}>
+          <span className={styles.heroBrand}>{product.brand}</span>
+          <h1 className={styles.heroModel}>{product.model}</h1>
+        </div>
 
-            <div className={styles.priceRow}>
-              <span className={styles.priceLabel}>Price</span>
-              <span className={styles.priceValue}>Private inquiry</span>
-            </div>
+        <div className={styles.scrollIndicator} aria-hidden="true" />
+      </div>
 
-            <p className={styles.presentedNote}>
-              Presented for private acquisition. Request the private dossier to receive
-              price, condition notes, set details, additional media, and viewing
-              arrangements.
-            </p>
-
-            {archived ? (
-              <div className={styles.ctas}>
-                <CTAButton href="/source-request" variant="solid" block>
-                  Source a Comparable Piece
-                </CTAButton>
-              </div>
-            ) : (
-              <div className={styles.ctas}>
-                <CTAButton href="#dossier" variant="solid" block>
-                  Request Private Dossier
-                </CTAButton>
-                <WhatsAppButton pieceName={pieceName} variant="gold" />
-              </div>
-            )}
-
-            <p className={styles.authNote}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" aria-hidden="true">
-                <path d="M12 3l7 2.5v5.5c0 4.6-3.1 7.6-7 8.8-3.9-1.2-7-4.2-7-8.8V5.5L12 3z" strokeLinejoin="round" />
-                <path d="M9 11.8l2.2 2.2 4-4.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span>Authenticated by specialists. Buyer protection on every acquisition.</span>
-            </p>
-
-            <dl className={styles.quickFacts}>
-              {facts.slice(0, 5).map((f) => (
-                <div className={styles.fact} key={f.k}>
-                  <dt>{f.k}</dt>
-                  <dd>{f.v}</dd>
+      {/* ── THE DOSSIER — below fold ── */}
+      <div className={`shell ${styles.dossierShell}`}>
+        <div className={styles.dossier}>
+          {/* Left: Condition Report */}
+          <div className={styles.reportCol}>
+            <p className={styles.reportLabel}>Condition Report</p>
+            <dl className={styles.reportList}>
+              {reportRows.map(({ k, v }) => (
+                <div key={k} className={styles.reportRow}>
+                  <dt className={styles.reportKey}>{k}</dt>
+                  <span className={styles.reportDots} aria-hidden="true" />
+                  <dd className={styles.reportVal}>{v}</dd>
                 </div>
               ))}
             </dl>
+            <div className={styles.statusBadge}>
+              <span
+                className={styles.statusDot}
+                style={{ background: statusColor }}
+              />
+              <span className={styles.statusText}>{product.status}</span>
+            </div>
+          </div>
+
+          {/* Right: The Story */}
+          <div className={styles.storyCol}>
+            <p className={styles.overview}>{product.overview}</p>
+            {product.provenance && (
+              <p className={styles.provenance}>{product.provenance}</p>
+            )}
+            {!archived && (
+              <div className={styles.heroActions}>
+                <a
+                  href="#inquiry"
+                  className={`btn btn-solid ${styles.dossierCta}`}
+                >
+                  Request Private Dossier
+                </a>
+              </div>
+            )}
+
+            {/* Set contents */}
+            <div className={styles.setSection}>
+              <p className={styles.setLabel}>Accompanies</p>
+              <div className={styles.setItems}>
+                {product.setContents.map((item) => (
+                  <div key={item} className={styles.setItem}>{item}</div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Sections */}
-        <div className={styles.sections}>
-          <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Overview</h2>
-            <div className={styles.blockBody}>
-              <p>{product.overview}</p>
+        {/* ── GALLERY ── */}
+        <section className={styles.gallerySection}>
+          <ProductGallery images={product.images} alt={pieceName} />
+        </section>
+
+        {/* ── INQUIRY ── */}
+        {!archived && (
+          <section className={styles.inquirySection} id="inquiry">
+            <div className={styles.inquiryHead}>
+              <span className="eyebrow">Private Acquisition</span>
+              <h2 className={styles.inquiryTitle}>Begin the conversation.</h2>
             </div>
+            <ConversationalInquiry pieceName={pieceName} />
           </section>
+        )}
 
-          <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Details</h2>
-            <div className={styles.blockBody}>
-              <dl className={styles.detailGrid}>
-                {facts.map((f) => (
-                  <div className={styles.fact} key={f.k}>
-                    <dt>{f.k}</dt>
-                    <dd>{f.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Condition</h2>
-            <div className={styles.blockBody}>
-              <p>
-                Presented in {product.condition.toLowerCase()} condition. Full condition
-                notes — including close detail on wear, corners, and finish — are provided in
-                the private dossier on request.
-              </p>
-            </div>
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Set Contents</h2>
-            <div className={styles.blockBody}>
-              <ul className={styles.setList}>
-                {product.setContents.map((item) => (
-                  <li className={styles.setItem} key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className={styles.block}>
-            <h2 className={styles.blockTitle}>Assurances</h2>
-            <div className={styles.blockBody}>
-              <Accordion items={assurances} defaultOpen={0} />
-            </div>
-          </section>
-
-          {!archived && (
-            <section className={styles.block} id="dossier">
-              <h2 className={styles.blockTitle}>Request the Dossier</h2>
-              <div className={`${styles.blockBody} ${styles.dossierWrap}`}>
-                <DossierForm pieceName={pieceName} />
-              </div>
-            </section>
-          )}
-        </div>
-
-        <TrustSection
-          label="The Gentle Core Standard"
-          heading="Every acquisition, held to the same standard."
-        />
-
+        {/* ── RELATED ── */}
         {related.length > 0 && (
-          <section className={styles.related} aria-labelledby="related-h">
-            <SectionReveal>
-              <header className={styles.relatedHead}>
-                <span className="label">Related Pieces</span>
-                <h2 id="related-h" className={styles.relatedTitle}>
-                  More from {categoryLabel(product.category)}
-                </h2>
-              </header>
-            </SectionReveal>
+          <section className={styles.related}>
+            <div className={styles.relatedHead}>
+              <span className="eyebrow">Related Pieces</span>
+              <h2 className={styles.relatedTitle}>
+                More from {categoryLabel(product.category)}
+              </h2>
+            </div>
             <ProductGrid products={related} columns={3} />
           </section>
         )}

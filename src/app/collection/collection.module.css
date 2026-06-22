@@ -1,0 +1,26 @@
+.page {
+  padding-top: calc(var(--nav-h) + var(--space-l));
+  padding-bottom: var(--space-xl);
+}
+
+.header {
+  width: var(--shell);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--space-l);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  font-weight: 400;
+}
+
+.intro {
+  color: var(--ink-soft);
+  max-width: 52ch;
+  font-size: var(--fs-sm);
+}
