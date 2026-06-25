@@ -1,72 +1,41 @@
+// Inspired-clone of cartier.com — not affiliated
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
-import { site } from "@/lib/site";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import GrainOverlay from "@/components/GrainOverlay";
-import CustomCursor from "@/components/CustomCursor";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const serif = Cormorant_Garamond({
+  variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-cormorant",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const inter = Inter({
+const sans = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: "Gentle Core — Private Luxury Resale House",
-    template: "%s · Gentle Core",
-  },
+  title: "Cartier — Luxury Jewelry, Fine Watches & Accessories | Inspired Clone",
   description:
-    "Rare handbags, watches, jewelry, and accessories presented through private dossiers for serious buyers worldwide.",
-  keywords: [
-    "luxury resale",
-    "Hermès Birkin",
-    "Rolex Patek Philippe",
-    "rare handbags",
-    "private luxury sourcing",
-  ],
-  openGraph: {
-    title: "Gentle Core — Private Luxury Resale House",
-    description:
-      "Rare handbags, watches, jewelry, and accessories presented through private dossiers for serious buyers worldwide.",
-    url: site.url,
-    siteName: site.name,
-    images: [{ url: "/og/cover.svg", width: 1200, height: 630, alt: site.name }],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
+    "Discover the world of Cartier: iconic jewelry, fine watches, and accessories crafted in the spirit of the Maison's enduring heritage.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable} ${mono.variable}`}>
-      <body>
-        <a href="#main" className="skip-link">Skip to content</a>
-        <GrainOverlay />
-        <CustomCursor />
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      className={`${serif.variable} ${sans.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        {children}
       </body>
     </html>
   );

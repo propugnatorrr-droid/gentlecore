@@ -1,137 +1,171 @@
-# Gentle Outlet
+# AI Website Cloner Template
 
-A private luxury resale website for **Gentle Outlet** — a Dubai house presenting rare
-handbags, watches, jewelry, and accessories for **private acquisition**.
+<a href="https://github.com/JCodesMore/ai-website-cloner-template/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a> <a href="https://github.com/JCodesMore/ai-website-cloner-template/stargazers"><img src="https://img.shields.io/github/stars/JCodesMore/ai-website-cloner-template?style=flat" alt="Stars" /></a> <a href="https://discord.gg/hrTSX5yTpB"><img src="https://img.shields.io/discord/1400896964597383279?label=discord" alt="Discord" /></a>
 
-This is a **brand + catalogue** experience, not a checkout store: there is **no cart, no
-payment, no public prices**. Buyers request a **private dossier** or inquire via
-**WhatsApp**.
+A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. 
 
-Built with **Next.js (App Router) + TypeScript** and **plain CSS Modules** + a global
-design-tokens stylesheet. No database — the catalogue is a typed data file.
+**Recommended: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with Opus 4.7 for best results** — but works with a variety of AI coding agents.
 
----
+Point it at a URL, run `/clone-website`, and your AI agent will inspect the site, extract design tokens and assets, write component specs, and dispatch parallel builders to reconstruct every section.
 
-## 1. Run locally
+## Demo
 
-Requires Node 18.18+ (Node 20+ recommended).
+[![Watch the demo](docs/design-references/comparison.png)](https://youtu.be/O669pVZ_qr0)
 
-```bash
-npm install
-npm run dev      # http://localhost:3000
-```
+> Click the image above to watch the full demo on YouTube.
 
-Other scripts:
+## Quick Start
 
-```bash
-npm run build    # production build (fully static)
-npm run start    # serve the production build
-npm run lint     # eslint (next/core-web-vitals)
-```
+> **Important:** Start by making your own copy with GitHub's **Use this template** button. Do not clone this template repository directly for your website project, and do not open pull requests here with your generated website.
 
----
+1. **Create your own repository from this template**
 
-## 2. Fill in real business details
+   On the GitHub page for this project, click **Use this template**, then click **Create a new repository**.
 
-Open **`src/lib/site.ts`** and replace every `PLACEHOLDER`:
+   Give your new repository a name, choose whether it should be public or private, then click **Create repository**. If GitHub shows an **Include all branches** option, you can leave it off.
 
-| Field             | What to set                                              |
-| ----------------- | ------------------------------------------------------- |
-| `WHATSAPP_NUMBER` | WhatsApp number, international format, **digits only, no `+`** |
-| `url`             | Live domain, e.g. `https://gentleoutlet.com`            |
-| `email`           | Contact email                                           |
-| `address`         | Viewing address lines                                   |
-| `instagram`       | Instagram handle (already set to `gentleoutlet`)        |
+   This gives you your own separate project to work in, so your website changes stay in your account instead of coming back to the main template.
 
-> The WhatsApp number is the single most important value — every WhatsApp CTA and every
-> form's hand-off uses `WHATSAPP_NUMBER`. Search the repo for `PLACEHOLDER` to find all.
+2. **Open your new repository on your computer**
 
----
+   After GitHub creates your copy, open that new repository. Click **Code** and open or clone your new repository with your preferred coding tool.
 
-## 3. Add or edit a piece
+   If you use the terminal, the command will look like this:
 
-Everything lives in **`data/products.ts`**.
-
-1. **Add photos** to `public/products/` (multiple angles). Real photos can be `.jpg` /
-   `.webp`; the seed data uses placeholder `.svg` plates.
-2. **Add an entry** to the `products` array:
-
-   ```ts
-   {
-     id: "hermes-kelly-25-gold",          // slug -> /product/hermes-kelly-25-gold
-     brand: "Hermès",
-     model: "Kelly 25 Sellier",
-     category: "handbags",                 // handbags | watches | jewelry | accessories
-     material: "Gold Togo",
-     hardware: "Gold Hardware",
-     detailLine: "Gold Togo · Gold Hardware",  // shown on cards
-     color: "Gold",
-     condition: "Excellent",
-     setContents: ["Dust bag", "Box", "Clochette, keys & lock"],
-     location: "Dubai",
-     status: "Available",                  // Available | Reserved | Previously Presented | Acquired
-     reference: "",                        // optional (watches)
-     year: "",                             // optional
-     overview: "Editorial paragraph…",
-     images: ["kelly-25-1.jpg", "kelly-25-2.jpg"],
-     featured: true,                       // appears in "Now Presenting"
-     newArrival: true,                     // appears in New Arrivals
-     collector: true,                      // flagged as a collector piece
-   },
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/YOUR-NEW-REPOSITORY.git
+   cd YOUR-NEW-REPOSITORY
    ```
 
-3. Save. The piece appears automatically across its category, New Arrivals, the home
-   preview, related pieces, and the sitemap.
+3. **Install dependencies**
+   ```bash
+   npm install
+   ```
+4. **Start your AI agent** — Claude Code recommended:
+   ```bash
+   claude --chrome
+   ```
+5. **Run the skill**:
+   ```
+   /clone-website <target-url1> [<target-url2> ...]
+   ```
+6. **Customize** (optional) — after the base clone is built, modify as needed
 
-**Status language is intentional.** `Available` / `Reserved` are inquirable; `Previously
-Presented` / `Acquired` move the piece into the Archive (still visible, not inquirable).
-There is deliberately no loud "SOLD".
+> Using a different agent? Open `AGENTS.md` for project instructions — most agents pick it up automatically.
 
-### Categories
+## Supported Platforms
 
-Defined once in `CATEGORIES` (`data/products.ts`) and used across nav, filters, and pages.
+| Agent                                                         | Status                     |
+| ------------------------------------------------------------- | -------------------------- |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 4.7 |
+| [Codex CLI](https://github.com/openai/codex)                  | Supported                  |
+| [OpenCode](https://opencode.ai/)                              | Supported                  |
+| [GitHub Copilot](https://github.com/features/copilot)         | Supported                  |
+| [Cursor](https://cursor.com/)                                 | Supported                  |
+| [Windsurf](https://codeium.com/windsurf)                      | Supported                  |
+| [Gemini CLI](https://github.com/google-gemini/gemini-cli)     | Supported                  |
+| [Cline](https://github.com/cline/cline)                       | Supported                  |
+| [Roo Code](https://github.com/RooCodeInc/Roo-Code)            | Supported                  |
+| [Continue](https://continue.dev/)                             | Supported                  |
+| [Amazon Q](https://aws.amazon.com/q/developer/)               | Supported                  |
+| [Augment Code](https://www.augmentcode.com/)                  | Supported                  |
+| [Aider](https://aider.chat/)                                  | Supported                  |
 
----
+## Prerequisites
 
-## 4. Deploy to Vercel (free)
+- [Node.js](https://nodejs.org/) 24+
+- An AI coding agent (see [Supported Platforms](#supported-platforms))
 
-1. Push to a GitHub repository.
-2. vercel.com → **Add New… → Project** → import the repo. Next.js is auto-detected.
-3. **Deploy.** No environment variables are required.
+## Tech Stack
 
-### Custom domain
+- **Next.js 16** — App Router, React 19, TypeScript strict
+- **shadcn/ui** — Radix primitives + Tailwind CSS v4
+- **Tailwind CSS v4** — oklch design tokens
+- **Lucide React** — default icons (replaced by extracted SVGs during cloning)
 
-Vercel project → **Settings → Domains** → add your domain → add the DNS records Vercel
-shows at your registrar. HTTPS is automatic. After it's live, set `url` in `src/lib/site.ts`
-and redeploy so SEO / sitemap / Open Graph use the final domain.
+## How It Works
 
----
+The `/clone-website` skill runs a multi-phase pipeline:
 
-## 5. Architecture
+1. **Reconnaissance** — screenshots, design token extraction, interaction sweep (scroll, click, hover, responsive)
+2. **Foundation** — updates fonts, colors, globals, downloads all assets
+3. **Component Specs** — writes detailed spec files (`docs/research/components/`) with exact computed CSS values, states, behaviors, and content
+4. **Parallel Build** — dispatches builder agents in git worktrees, one per section/component
+5. **Assembly & QA** — merges worktrees, wires up the page, runs visual diff against the original
+
+Each builder agent receives the full component specification inline — exact `getComputedStyle()` values, interaction models, multi-state content, responsive breakpoints, and asset paths. No guessing.
+
+## Use Cases
+
+- **Platform migration** — rebuild a site you own from WordPress/Webflow/Squarespace into a modern Next.js codebase
+- **Lost source code** — your site is live but the repo is gone, the developer left, or the stack is legacy. Get the code back in a modern format
+- **Learning** — deconstruct how production sites achieve specific layouts, animations, and responsive behavior by working with real code
+
+## Not Intended For
+
+- **Phishing or impersonation** — this project must not be used for deceptive purposes, impersonation, or any activity that breaks the law.
+- **Passing off someone's design as your own** — logos, brand assets, and original copy belong to their owners.
+- **Violating terms of service** — some sites explicitly prohibit scraping or reproduction. Check first.
+
+## Project Structure
 
 ```
-data/products.ts          Catalogue + categories (single source of truth)
-src/lib/site.ts           Brand constants, WHATSAPP_NUMBER, link builders
-src/app/                  Routes (App Router), global CSS, sitemap/robots
-src/components/            Reusable UI:
-  Nav, Footer, MobileCtaBar           global chrome + sticky mobile CTA
-  ProductCard, ProductGrid            auction-style catalogue entries
-  CategoryCard, ProductGallery        previews + image switcher
-  SectionHeader, SectionReveal        editorial headers + scroll reveal
-  CTAButton, WhatsAppButton, StatusTag
-  DossierForm, SourceRequestForm, ContactForm   (mock submit + WhatsApp hand-off)
-public/products/          Imagery by filename
-scripts/                  One-off placeholder-plate generator
+src/
+  app/              # Next.js routes
+  components/       # React components
+    ui/             # shadcn/ui primitives
+    icons.tsx       # Extracted SVG icons
+  lib/utils.ts      # cn() utility
+  types/            # TypeScript interfaces
+  hooks/            # Custom React hooks
+public/
+  images/           # Downloaded images from target
+  videos/           # Downloaded videos from target
+  seo/              # Favicons, OG images
+docs/
+  research/         # Extraction output & component specs
+  design-references/ # Screenshots
+scripts/
+  sync-agent-rules.sh  # Regenerate agent instruction files
+  sync-skills.mjs      # Regenerate /clone-website for all platforms
+AGENTS.md           # Agent instructions (single source of truth)
+CLAUDE.md           # Claude Code config (imports AGENTS.md)
+GEMINI.md           # Gemini CLI config (imports AGENTS.md)
 ```
 
-## Notes
+## Commands
 
-- **Forms** currently use a graceful mock submit: on send they confirm receipt and prepare
-  a pre-filled WhatsApp message as the primary channel. To persist leads, wire the
-  `handleSubmit` functions (marked with `TODO`) to an email service or CRM.
-- **Trademark / positioning:** brand names describe genuine pieces only (nominative fair
-  use); no brand logos are used. The independent-reseller disclaimer is in the footer on
-  every page. No prices are shown — every piece is "Private inquiry".
-- **Mobile-first:** sticky Request Dossier / WhatsApp bar, large imagery, thumb-friendly.
-- **Performance/SEO:** `next/image` everywhere, static generation, per-page metadata + OG,
-  Product JSON-LD on product pages, sitemap + robots.
+```bash
+npm run dev    # Start dev server
+npm run build  # Production build
+npm run lint   # ESLint check
+npm run typecheck # TypeScript check
+npm run check  # Run lint + typecheck + build
+```
+
+### If using docker
+
+```bash
+docker compose up app --build # build and run the app
+docker compose up dev --build # run the app in dev mode on port 3001
+```
+
+## Updating for Other Platforms
+
+Two source-of-truth files power all platform support. Edit the source, then run the sync script:
+
+| What                   | Source of truth                         | Sync command                       |
+| ---------------------- | --------------------------------------- | ---------------------------------- |
+| Project instructions   | `AGENTS.md`                             | `bash scripts/sync-agent-rules.sh` |
+| `/clone-website` skill | `.claude/skills/clone-website/SKILL.md` | `node scripts/sync-skills.mjs`     |
+
+Each script regenerates the platform-specific copies automatically. Agents that read the source files natively need no regeneration.
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=JCodesMore/ai-website-cloner-template&type=Date)](https://star-history.com/#JCodesMore/ai-website-cloner-template&Date)
+
+## License
+
+MIT
