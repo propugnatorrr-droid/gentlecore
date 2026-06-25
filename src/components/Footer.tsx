@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, whatsappLink, dossierMessage } from "@/lib/site";
 import styles from "./Footer.module.css";
+import CookiePreferencesLink from "./CookiePreferencesLink";
 
 const HOUSE = [
   { href: "/about", label: "About" },
@@ -21,8 +22,17 @@ const PIECES = [
 const SERVICES = [
   { href: "/how-to-buy", label: "How to Buy" },
   { href: "/atelier", label: "Authentication" },
-  { href: "/how-to-buy", label: "Discreet Delivery" },
+  { href: "/shipping", label: "Discreet Delivery" },
   { href: "/source-request", label: "Private Viewing" },
+];
+
+const LEGAL = [
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/cookies", label: "Cookie Policy" },
+  { href: "/terms", label: "Terms of Use" },
+  { href: "/imprint", label: "Imprint" },
+  { href: "/returns", label: "Returns & Cancellation" },
+  { href: "/shipping", label: "Shipping & Delivery" },
 ];
 
 export default function Footer() {
@@ -75,6 +85,22 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          <div className={styles.col}>
+            <h4 className={`eyebrow ${styles.colHead}`}>Legal</h4>
+            <ul className={styles.list}>
+              {LEGAL.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className={styles.link}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <CookiePreferencesLink />
+              </li>
             </ul>
           </div>
 

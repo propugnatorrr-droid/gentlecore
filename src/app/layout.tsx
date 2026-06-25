@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
