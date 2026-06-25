@@ -1,15 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { whatsappLink, dossierMessage, site } from "@/lib/site";
+import { getFeatured } from "@/data/products";
 import styles from "./Nav.module.css";
-
-const utility = [
-  { href: "/contact", label: "Worldwide" },
-  { href: "/contact", label: "Contact" },
-  { href: "/source-request", label: "Private Viewing" },
-];
 
 const primary = [
   { href: "/new-arrivals", label: "New Arrivals" },
@@ -22,12 +18,21 @@ const primary = [
   { href: "/journal", label: "Journal" },
 ];
 
+const utility = [
+  { href: "/about", label: "The House" },
+  { href: "/how-to-buy", label: "How to Buy" },
+  { href: "/contact", label: "Contact" },
+  { href: "/source-request", label: "Private Viewing" },
+];
+
+const featurePiece = getFeatured()[0];
+
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const onScroll = () => setRevealed(window.scrollY > 120);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -40,149 +45,153 @@ export default function Nav() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
-      {/* Utility row */}
-      <div className={styles.utility}>
-        <div className={`container ${styles.utilityInner}`}>
-          <div className={styles.utilityLeft}>
-            {utility.map((l) => (
-              <Link key={l.label} href={l.href} className={`eyebrow ${styles.utilityLink}`}>
-                {l.label}
-              </Link>
-            ))}
-          </div>
-          <div className={styles.utilityRight}>
-            <a
-              href={site.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`eyebrow ${styles.utilityLink}`}
+    <>
+      <header
+        className={`${styles.bar} ${revealed || open ? styles.barShow : ""}`}
+        data-open={open || undefined}
+      >
+        <div className={styles.barInner}>
+          <button
+            className={styles.menuBtn}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={styles.menuGlyph} aria-hidden="true">
+              <span className={`${styles.menuLine} ${open ? styles.menuLineA : ""}`} />
+              <span className={`${styles.menuLine} ${open ? styles.menuLineB : ""}`} />
+            </span>
+            <span className={`eyebrow ${styles.menuLabel}`}>
+              {open ? "Close" : "Menu"}
+            </span>
+          </button>
+
+          <Link href="/" className={styles.wordmark} onClick={() => setOpen(false)}>
+            Gentle Core
+          </Link>
+
+          <div className={styles.right}>
+            <Link
+              href="/source-request"
+              className={`eyebrow ${styles.inquireLink}`}
+              onClick={() => setOpen(false)}
             >
-              Instagram
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Logo row */}
-      <div className={`container ${styles.logoRow}`}>
-        <button
-          className={styles.burger}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className={`${styles.line} ${open ? styles.l1 : ""}`} />
-          <span className={`${styles.line} ${open ? styles.l2 : ""}`} />
-        </button>
-
-        <Link href="/" className={styles.wordmark} onClick={() => setOpen(false)}>
-          Gentle Core
-        </Link>
-
-        <a
-          className={styles.waMobile}
-          href={whatsappLink(dossierMessage())}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Inquire on WhatsApp"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M12 2C6.48 2 2 6.48 2 12c0 1.97.57 3.81 1.55 5.36L2 22l4.79-1.52A9.95 9.95 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
-              stroke="currentColor"
-              strokeWidth="1.2"
-            />
-          </svg>
-        </a>
-      </div>
-
-      {/* Primary nav */}
-      <nav className={styles.primary} aria-label="Primary">
-        <div className={`container ${styles.primaryInner}`}>
-          <div className={styles.primarySpacer} />
-          <ul className={styles.primaryLinks}>
-            {primary.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className={`eyebrow ${styles.primaryLink}`}>
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.primaryRight}>
-            <button className={styles.iconBtn} aria-label="Search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-              </svg>
-            </button>
+              Inquire
+            </Link>
             <a
               className={styles.iconBtn}
               href={whatsappLink(dossierMessage())}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Inquire on WhatsApp"
+              aria-label="Message on WhatsApp"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path
-                  d="M12 2C6.48 2 2 6.48 2 12c0 1.97.57 3.81 1.55 5.36L2 22l4.79-1.52A9.95 9.95 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"
+                  d="M3 21l1.6-5A9 9 0 1 1 8 18.4L3 21z"
                   stroke="currentColor"
-                  strokeWidth="1.2"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </a>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Mobile drawer */}
-      {open && (
-        <div className={styles.sheet} role="dialog" aria-modal="true">
-          <nav className={styles.sheetNav} aria-label="Mobile">
-            {primary.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={styles.sheetLink}
-                onClick={() => setOpen(false)}
+      <div
+        className={`${styles.overlay} ${open ? styles.overlayOpen : ""}`}
+        aria-hidden={!open}
+      >
+        <div className={styles.overlayGrid}>
+          <nav className={styles.primaryColumn} aria-label="Primary">
+            <ol className={styles.primaryList}>
+              {primary.map((l, i) => (
+                <li
+                  key={l.href}
+                  className={styles.primaryItem}
+                  style={{ "--i": i } as React.CSSProperties}
+                >
+                  <Link
+                    href={l.href}
+                    className={styles.primaryLink}
+                    onClick={() => setOpen(false)}
+                  >
+                    <span className={styles.primaryIndex} aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={styles.primaryWord}>{l.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+
+            <div className={styles.utilityBlock}>
+              {utility.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`eyebrow ${styles.utilityLink}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <a
+                href={site.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`eyebrow ${styles.utilityLink}`}
               >
-                {l.label}
-              </Link>
-            ))}
+                Instagram
+              </a>
+            </div>
           </nav>
-          <div className={styles.sheetFoot}>
-            {utility.map((l) => (
+
+          {featurePiece && (
+            <aside className={styles.featureColumn}>
               <Link
-                key={l.label}
-                href={l.href}
-                className={`eyebrow ${styles.sheetUtil}`}
+                href={`/product/${featurePiece.id}`}
+                className={styles.featureLink}
                 onClick={() => setOpen(false)}
               >
-                {l.label}
+                <span className={`eyebrow ${styles.featureKicker}`}>
+                  Now Presenting
+                </span>
+                <span className={styles.featureImageWrap}>
+                  <Image
+                    src={featurePiece.images[0]}
+                    alt={`${featurePiece.brand} ${featurePiece.model}`}
+                    fill
+                    sizes="(max-width: 900px) 0vw, 36vw"
+                    className={styles.featureImage}
+                  />
+                </span>
+                <span className={styles.featureMeta}>
+                  <span className={`eyebrow ${styles.featureBrand}`}>
+                    {featurePiece.brand}
+                  </span>
+                  <span className={styles.featureModel}>
+                    {featurePiece.model}
+                  </span>
+                  <span className={`eyebrow ${styles.featureCta}`}>
+                    View the piece <span aria-hidden="true">→</span>
+                  </span>
+                </span>
               </Link>
-            ))}
-            <a
-              href={site.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`eyebrow ${styles.sheetUtil}`}
-            >
-              Instagram
-            </a>
-            <a
-              href={whatsappLink(dossierMessage())}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`cartier-link ${styles.sheetCta}`}
-              onClick={() => setOpen(false)}
-            >
-              Open a private inquiry <span className="arrow">→</span>
-            </a>
-          </div>
+            </aside>
+          )}
         </div>
-      )}
-    </header>
+      </div>
+    </>
   );
 }
