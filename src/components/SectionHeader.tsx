@@ -17,9 +17,9 @@ export default function SectionHeader({
   const Heading = as;
   return (
     <SectionReveal className={`${styles.head} ${align === "center" ? styles.center : ""}`}>
-      <span className="label">{label}</span>
-      <Heading className={styles.title}>{title}</Heading>
-      {intro && <p className={styles.intro}>{intro}</p>}
+      <span className={`eyebrow ${styles.label}`}>{label}</span>
+      <Heading className={`h2 ${styles.title}`}>{title}</Heading>
+      {intro && <p className={`body body-lg ${styles.intro}`}>{intro}</p>}
     </SectionReveal>
   );
 }

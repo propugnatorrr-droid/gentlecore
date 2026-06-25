@@ -1,64 +1,91 @@
 .accordion {
-  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ink-10);
 }
 
 .row {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--ink-10);
 }
 
-.heading { margin: 0; }
+.heading {
+  margin: 0;
+}
 
 .trigger {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s3);
-  padding: var(--s3) 0;
-  background: transparent;
-  border: 0;
+  width: 100%;
+  padding: 28px 0;
   text-align: left;
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--near-black);
-  transition: color 0.35s var(--ease);
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: opacity 200ms ease;
 }
-.trigger:hover { color: var(--gold); }
 
-/* plus / minus sign */
+.trigger:hover {
+  opacity: 0.7;
+}
+
 .sign {
   position: relative;
-  flex: none;
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
+  margin-left: 24px;
 }
+
 .sign::before,
 .sign::after {
   content: "";
   position: absolute;
-  background: var(--gold);
-  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+  background: var(--ink);
+  transition: transform 200ms ease;
 }
-.sign::before { top: 6px; left: 0; width: 14px; height: 1px; }
-.sign::after { left: 6px; top: 0; width: 1px; height: 14px; }
-.signOpen::after { transform: scaleY(0); opacity: 0; }
+
+.sign::before {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.sign::after {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.signOpen::after {
+  transform: translateX(-50%) scaleY(0);
+}
 
 .panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.38s var(--ease);
+  transition: grid-template-rows 300ms ease;
 }
-.panelOpen { grid-template-rows: 1fr; }
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
 
 .panelInner {
   overflow: hidden;
 }
 
-.panel p {
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+.panelInner p {
+  font-size: 15px;
+  color: var(--ink-60);
   line-height: 1.7;
-  max-width: var(--measure);
-  padding-bottom: var(--s3);
+  max-width: 62ch;
+  padding-bottom: 28px;
 }

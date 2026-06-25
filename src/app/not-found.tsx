@@ -1,20 +1,36 @@
-import CTAButton from "@/components/CTAButton";
-import styles from "./not-found.module.css";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className={styles.wrap}>
-      <div className="shell-narrow">
-        <span className="label">Page not found</span>
-        <h1 className={styles.title}>This piece is no longer here.</h1>
-        <p className={styles.text}>
-          The page you are looking for has moved on. Explore the current preview, or tell us
-          what you are seeking.
+    <section
+      style={{
+        minHeight: "70vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "clamp(80px, 12vw, 160px) 0",
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          gap: 24,
+          maxWidth: 560,
+        }}
+      >
+        <span className="eyebrow">404</span>
+        <h1 className="h1">This piece is not on the floor.</h1>
+        <p className="body body-lg">
+          The page you were looking for is no longer presented. Browse the
+          current collection.
         </p>
-        <div className={styles.ctas}>
-          <CTAButton href="/new-arrivals" variant="solid">View Available Pieces</CTAButton>
-          <CTAButton href="/source-request" variant="gold">Source by Request</CTAButton>
-        </div>
+        <Link href="/collection" className="cartier-link">
+          Return to Collection <span className="arrow">→</span>
+        </Link>
       </div>
     </section>
   );

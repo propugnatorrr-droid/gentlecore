@@ -14,11 +14,12 @@ export default function PageIntro({
 }) {
   return (
     <header className={`${styles.intro} ${align === "center" ? styles.center : ""}`}>
-      <div className="shell">
+      <div className="container">
         <SectionReveal>
-          <span className="label">{label}</span>
-          <h1 className={styles.title}>{title}</h1>
-          {intro && <p className={styles.lede}>{intro}</p>}
+          <span className={`eyebrow ${styles.eyebrow}`}>{label}</span>
+          <h1 className={`h1 ${styles.title}`}>{title}</h1>
+          <hr className={styles.rule} />
+          {intro && <p className={`body body-lg ${styles.lede}`}>{intro}</p>}
         </SectionReveal>
       </div>
     </header>

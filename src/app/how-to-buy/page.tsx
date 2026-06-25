@@ -1,78 +1,94 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
+import Link from "next/link";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
-import CTAButton from "@/components/CTAButton";
-import styles from "../content.module.css";
 
 export const metadata: Metadata = {
   title: "How to Buy",
-  description:
-    "The private acquisition process at Gentle Core — inquire, receive the dossier, review, arrange viewing or shipping, and confirm.",
+  description: "The four steps of a private acquisition.",
 };
 
 const steps = [
-  { n: "01", name: "Inquire", d: "Request the dossier for a piece, or brief us on what you are seeking. Every conversation is private and obligation-free." },
-  { n: "02", name: "Receive Dossier", d: "We respond with price, condition notes, set details, and additional media — everything needed to consider the piece properly." },
-  { n: "03", name: "Review Details", d: "Take your time. Request further photographs or video, and ask anything you need to decide with confidence." },
-  { n: "04", name: "Arrange Viewing / Shipping", d: "View privately by appointment, or we arrange insured, discreet worldwide shipping to your location." },
-  { n: "05", name: "Confirm Acquisition", d: "Finalise the acquisition privately, with documentation provided for the piece." },
-];
-
-const dossier = [
-  { name: "Condition Notes", d: "A candid account of condition and wear." },
-  { name: "Set Details", d: "Precisely what accompanies the piece." },
-  { name: "Additional Media", d: "Further photos and video on request." },
-  { name: "Private Viewing", d: "By arrangement, or shipping worldwide." },
+  {
+    n: "01",
+    title: "Inquire",
+    body:
+      "Send a quiet note — either about a specific piece, or a brief describing what you are seeking. We respond privately, usually within hours.",
+  },
+  {
+    n: "02",
+    title: "Dossier",
+    body:
+      "We prepare a private dossier: photographs in natural light, full specification, condition report, provenance, and pricing. Shared one-to-one, not published.",
+  },
+  {
+    n: "03",
+    title: "Authenticate & Reserve",
+    body:
+      "A reservation holds the piece for a defined window. Independent authentication may be arranged at your request before settlement.",
+  },
+  {
+    n: "04",
+    title: "Delivery",
+    body:
+      "Insured, unbranded worldwide shipment. For pieces of particular weight, hand delivery is arranged by private appointment.",
+  },
 ];
 
 export default function HowToBuyPage() {
   return (
     <>
       <PageIntro
-        label="The Private Dossier — How It Works"
-        title="A considered, private way to acquire."
-        intro="No prices are listed publicly. Each piece is presented for private acquisition through a dossier prepared for you."
+        label="Process"
+        title="How to Buy"
+        intro="Four quiet steps, from first inquiry to delivery."
       />
+      <section className="section">
+        <div
+          className="container"
+          style={{
+            maxWidth: 720,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(40px, 6vw, 80px)",
+          }}
+        >
+          {steps.map((s, i) => (
+            <SectionReveal key={s.n} delay={i * 0.04}>
+              <article
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  borderTop: "1px solid var(--ink-10)",
+                  paddingTop: 24,
+                }}
+              >
+                <span className="eyebrow" style={{ color: "var(--ink-40)" }}>
+                  {s.n}
+                </span>
+                <h3 className="h3">{s.title}</h3>
+                <p className="body body-lg">{s.body}</p>
+              </article>
+            </SectionReveal>
+          ))}
 
-      <section className="shell">
-        <SectionReveal className={styles.block}>
-          <h2 className={styles.blockLabel}>The Process</h2>
-          <div className={styles.body}>
-            <ol className={styles.steps}>
-              {steps.map((s) => (
-                <li className={styles.step} key={s.n}>
-                  <span className={styles.stepNum}>{s.n}</span>
-                  <div>
-                    <h3 className={styles.stepName}>{s.name}</h3>
-                    <p className={styles.stepDesc}>{s.d}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className={styles.block}>
-          <h2 className={styles.blockLabel}>What the Dossier Includes</h2>
-          <div className={styles.body}>
-            <div className={styles.defList}>
-              {dossier.map((d) => (
-                <div className={styles.def} key={d.name}>
-                  <span className={styles.defTerm}>{d.name}</span>
-                  <span className={styles.defDesc}>{d.d}</span>
-                </div>
-              ))}
-            </div>
-            <p style={{ marginTop: "var(--s4)" }}>
-              Ready to begin? Request the dossier for a specific piece, or tell us what you
-              are seeking.
+          <SectionReveal>
+            <p
+              className="body"
+              style={{
+                textAlign: "center",
+                color: "var(--ink-60)",
+                marginTop: 16,
+              }}
+            >
+              Ready to begin?{" "}
+              <Link href="/source-request" className="cartier-link">
+                Open a Private Inquiry <span className="arrow">→</span>
+              </Link>
             </p>
-            <div style={{ display: "flex", gap: "var(--s2)", flexWrap: "wrap", marginTop: "var(--s2)" }}>
-              <CTAButton href="/new-arrivals" variant="solid">View Available Pieces</CTAButton>
-              <CTAButton href="/source-request" variant="gold">Source by Request</CTAButton>
-            </div>
-          </div>
-        </SectionReveal>
+          </SectionReveal>
+        </div>
       </section>
     </>
   );

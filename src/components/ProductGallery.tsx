@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./ProductGallery.module.css";
 
 export default function ProductGallery({
@@ -12,11 +12,46 @@ export default function ProductGallery({
   alt: string;
 }) {
   const [active, setActive] = useState(0);
-  const src = (f: string) => `/products/${f}`;
-  const isSvg = (f: string) => f.endsWith(".svg");
+
+  const next = useCallback(
+    () => setActive((a) => (a + 1) % images.length),
+    [images.length]
+  );
+  const prev = useCallback(
+    () => setActive((a) => (a - 1 + images.length) % images.length),
+    [images.length]
+  );
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [next, prev]);
 
   return (
     <div className={styles.gallery}>
+      <div className={styles.main}>
+        {images.map((img, i) => (
+          <div
+            key={img}
+            className={`${styles.slide} ${i === active ? styles.slideActive : ""}`}
+            aria-hidden={i !== active}
+          >
+            <Image
+              src={img}
+              alt={i === 0 ? alt : ""}
+              fill
+              priority={i === 0}
+              sizes="(max-width: 900px) 100vw, 60vw"
+              className={styles.img}
+            />
+          </div>
+        ))}
+      </div>
+
       {images.length > 1 && (
         <div className={styles.thumbs} role="tablist" aria-label="Product images">
           {images.map((img, i) => (
@@ -28,38 +63,11 @@ export default function ProductGallery({
               className={`${styles.thumb} ${active === i ? styles.thumbActive : ""}`}
               onClick={() => setActive(i)}
             >
-              <Image
-                src={src(img)}
-                alt=""
-                fill
-                sizes="80px"
-                className={styles.thumbImg}
-                unoptimized={isSvg(img)}
-              />
+              <Image src={img} alt="" fill sizes="100px" className={styles.thumbImg} />
             </button>
           ))}
         </div>
       )}
-
-      <div className={styles.main}>
-        {images.map((img, i) => (
-          <div
-            key={img}
-            className={`${styles.mainSlide} ${i === active ? styles.mainSlideActive : ""}`}
-            aria-hidden={i !== active}
-          >
-            <Image
-              src={src(img)}
-              alt={i === 0 ? alt : ""}
-              fill
-              priority={i === 0}
-              sizes="(max-width: 900px) 100vw, 60vw"
-              className={styles.mainImg}
-              unoptimized={isSvg(img)}
-            />
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

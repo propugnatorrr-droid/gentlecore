@@ -1,41 +1,39 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
 import SourceRequestForm from "@/components/SourceRequestForm";
-import styles from "../content.module.css";
 
 export const metadata: Metadata = {
-  title: "Source by Request",
-  description:
-    "Searching for a specific Hermès, Rolex, Patek Philippe, Cartier, Chanel, or rare collector piece? Submit a private request to Gentle Core.",
+  title: "Source Request",
+  description: "Commission the house to source a specific piece.",
 };
 
 export default function SourceRequestPage() {
   return (
     <>
       <PageIntro
-        label="Source by Request"
-        title="Tell us what you are seeking."
-        intro="Searching for a specific Hermès, Rolex, Patek Philippe, Cartier, Chanel, or rare collector piece? Submit a private request and our team will review availability through our network."
+        label="Private Commission"
+        title="Source Request"
+        intro="Describe the piece you are seeking — material, hardware, condition. We respond with what we can source and timing."
       />
-
-      <section className="shell section">
-        <div className={styles.split}>
-          <aside className={styles.splitAside}>
-            <div className={styles.body}>
-              <h3>A discreet, obligation-free search.</h3>
-              <p>
-                Our network extends well beyond what is presented publicly. Share the brief —
-                the more detail, the better — and we will return only pieces that genuinely
-                match.
-              </p>
-              <p>
-                Sourcing covers handbags, watches, jewelry, and rare collector accessories.
-                Private viewing by arrangement; worldwide buyer inquiries accepted.
-              </p>
-            </div>
-          </aside>
-          <SectionReveal delay={0.08}>
+      <section className="section">
+        <div
+          className="container"
+          style={{
+            maxWidth: 640,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(32px, 4vw, 48px)",
+          }}
+        >
+          <SectionReveal>
+            <p className="body body-lg">
+              Sourcing is discreet and obligation-free. Provide as much
+              specification as you can; we will review availability quietly
+              through our network and present only what meets the brief.
+            </p>
+          </SectionReveal>
+          <SectionReveal>
             <SourceRequestForm />
           </SectionReveal>
         </div>

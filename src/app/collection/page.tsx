@@ -1,26 +1,51 @@
 import type { Metadata } from "next";
-import { products, isInquirable } from "@/data/products";
-import MasonryCollection from "@/components/MasonryCollection";
-import styles from "./collection.module.css";
+import Link from "next/link";
+import { products, isArchived } from "@/data/products";
+import PageIntro from "@/components/PageIntro";
+import ProductGrid from "@/components/ProductGrid";
 
 export const metadata: Metadata = {
-  title: "The Collection",
-  description:
-    "The current collection — rare handbags, watches, and jewellery, each authenticated and available for private acquisition worldwide.",
+  title: "The Full Collection",
+  description: "Every piece currently presented by the house.",
 };
 
+const filters = [
+  { href: "/collection", label: "All" },
+  { href: "/handbags", label: "Handbags" },
+  { href: "/watches", label: "Watches" },
+  { href: "/jewelry", label: "Jewelry" },
+];
+
 export default function CollectionPage() {
-  const available = products.filter(isInquirable);
+  const items = products.filter((p) => !isArchived(p));
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <span className="eyebrow">Currently Presented</span>
-        <h1 className={styles.title}>The Collection</h1>
-        <p className={styles.intro}>
-          Each piece is authenticated, condition-graded, and offered for private acquisition.
-        </p>
-      </header>
-      <MasonryCollection products={available} />
-    </div>
+    <>
+      <PageIntro
+        label="The Floor"
+        title="The Full Collection"
+        intro="Every piece presently on the floor, across every discipline."
+      />
+      <section className="section">
+        <div className="container">
+          <nav
+            aria-label="Collection filters"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "clamp(20px, 3vw, 40px)",
+              marginBottom: "clamp(40px, 5vw, 64px)",
+            }}
+          >
+            {filters.map((f) => (
+              <Link key={f.label} href={f.href} className="cartier-link">
+                {f.label}
+              </Link>
+            ))}
+          </nav>
+          <ProductGrid products={items} columns={3} />
+        </div>
+      </section>
+    </>
   );
 }

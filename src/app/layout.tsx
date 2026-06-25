@@ -3,8 +3,6 @@ import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import GrainOverlay from "@/components/GrainOverlay";
-import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -62,8 +60,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cormorant.variable} ${inter.variable} ${mono.variable}`}>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>
-        <GrainOverlay />
-        <CustomCursor />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

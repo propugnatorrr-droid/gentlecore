@@ -1,109 +1,73 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import styles from "./atelier.module.css";
+import PageIntro from "@/components/PageIntro";
+import SectionReveal from "@/components/SectionReveal";
 
 export const metadata: Metadata = {
   title: "The Atelier",
-  description:
-    "Gentle Core is an independent private resale house. Our process, our philosophy, and our commitment to honest authentication.",
+  description: "The process behind every piece presented by the house.",
 };
 
-const steps = [
-  {
-    number: "01",
-    title: "Sourced",
-    body: "Pieces are acquired directly from collectors, private estates, and trusted networks — not bulk lots, not auction overruns. Each source is known.",
-  },
-  {
-    number: "02",
-    title: "Authenticated",
-    body: "Every piece is examined by specialists: material, hardware, date codes, stitching, provenance documentation. No piece is presented with doubt unresolved.",
-  },
-  {
-    number: "03",
-    title: "Graded",
-    body: "Condition is documented in full — corners, lining, hardware, finish. The condition report delivered with every dossier contains no omissions.",
-  },
-  {
-    number: "04",
-    title: "Presented",
-    body: "Private dossiers are prepared: full photography, condition notes, set documentation. Each piece is offered for private acquisition only.",
-  },
+const before = [
+  "Every piece begins with a quiet conversation. An owner reaches out, or a specialist in our network surfaces something rare. The piece is requested in hand — not on consignment, not from photographs — before any commitment is made.",
+  "Once it arrives, the work begins in the room. Natural light, loupe, calibrated scale, rare-earth magnet. The piece is examined against a private rubric developed over years of handling specific houses — Hermès leather grains, Rolex case profiles, Patek Philippe dial printing.",
+  "Authentication is never a single test. It is the convergence of dozens of small certainties — each one a quiet checkmark — into an unambiguous conclusion. Documentation, where it exists, is treated as corroboration rather than proof.",
+];
+
+const after = [
+  "Only pieces that pass without reservation are presented. Each is photographed in natural light against neutral ground, dossier copy is written by hand, and the file is sent privately to a small list of interested collectors.",
+  "Negotiation, where it occurs, is conducted quietly between parties. We act as the trusted intermediary — never the seller of record beyond what is necessary, never the buyer beyond what is requested.",
+  "Delivery is unbranded, insured, and worldwide. For pieces of particular weight, hand delivery is arranged by private appointment. The shipment lands without ceremony; the conversation ends as quietly as it began.",
 ];
 
 export default function AtelierPage() {
   return (
-    <article className={styles.page}>
-      {/* Hero band */}
-      <header className={styles.hero}>
-        <div className={styles.heroInner}>
-          <span className="eyebrow">The Atelier</span>
-          <h1 className={styles.heroTitle}>
-            We buy carefully.<br />
-            We authenticate honestly.<br />
-            We present privately.
-          </h1>
-        </div>
-      </header>
+    <>
+      <PageIntro
+        label="Process"
+        title="The Atelier"
+        intro="The work that sits behind every piece we present — sourcing, authentication, presentation, delivery."
+      />
+      <section className="section">
+        <div
+          className="container"
+          style={{
+            maxWidth: 720,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(20px, 2.4vw, 32px)",
+          }}
+        >
+          {before.map((p, i) => (
+            <SectionReveal key={`b-${i}`} delay={i * 0.04}>
+              <p className="body body-lg">{p}</p>
+            </SectionReveal>
+          ))}
 
-      {/* Philosophy */}
-      <section className={`shell ${styles.philosophy}`}>
-        <div className={styles.philLeft}>
-          <span className="label">Our Philosophy</span>
-          <h2 className={styles.philHeading}>
-            The luxury market is full of theatre. We prefer silence.
-          </h2>
-        </div>
-        <div className={styles.philRight}>
-          <p className={styles.philBody}>
-            Gentle Core was founded on a simple premise: that the most trustworthy way to
-            acquire a rare luxury object is through a house that sources deliberately,
-            authenticates rigorously, and discloses completely.
-          </p>
-          <p className={styles.philBody}>
-            We do not use auction theatrics, countdown timers, or manufactured scarcity.
-            Every piece is presented with its full history and its full condition — and
-            nothing is withheld from the buyer&apos;s dossier.
-          </p>
-          <p className={styles.philBody}>
-            We are independent. We are not affiliated with any of the brands we carry.
-            Our only interest is in placing the right piece with the right collector.
-          </p>
+          <SectionReveal delay={0.1}>
+            <blockquote
+              style={{
+                fontFamily: "var(--font-cormorant), Georgia, serif",
+                fontWeight: 400,
+                fontSize: "clamp(28px, 3.6vw, 44px)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.012em",
+                color: "var(--ink)",
+                textAlign: "center",
+                margin: "clamp(32px, 5vw, 64px) auto",
+                maxWidth: "24ch",
+              }}
+            >
+              &ldquo;Discretion is a discipline.&rdquo;
+            </blockquote>
+          </SectionReveal>
+
+          {after.map((p, i) => (
+            <SectionReveal key={`a-${i}`} delay={i * 0.04}>
+              <p className="body body-lg">{p}</p>
+            </SectionReveal>
+          ))}
         </div>
       </section>
-
-      {/* Process timeline */}
-      <section className={`${styles.process}`}>
-        <div className="shell">
-          <span className="label">Our Process</span>
-          <h2 className={styles.processTitle}>From source to presentation.</h2>
-          <div className={styles.timeline}>
-            <div className={styles.timelineLine} aria-hidden="true" />
-            {steps.map((s) => (
-              <div key={s.number} className={styles.step}>
-                <div className={styles.stepNode}>
-                  <span className={styles.stepNum}>{s.number}</span>
-                </div>
-                <div className={styles.stepContent}>
-                  <h3 className={styles.stepTitle}>{s.title}</h3>
-                  <p className={styles.stepBody}>{s.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing CTA */}
-      <section className={`shell ${styles.cta}`}>
-        <h2 className={styles.ctaTitle}>
-          When you are ready to enquire, we are ready to prepare your dossier.
-        </h2>
-        <div className={styles.ctaActions}>
-          <Link href="/collection" className="btn btn-solid">Browse the Collection</Link>
-          <Link href="/source-request" className="btn btn-outline">Source a Specific Piece</Link>
-        </div>
-      </section>
-    </article>
+    </>
   );
 }

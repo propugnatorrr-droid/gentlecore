@@ -7,11 +7,13 @@ export default function CategoryCard({
   href,
   image,
   caption,
+  eyebrow = "House Discipline",
 }: {
   label: string;
   href: string;
   image: string;
   caption?: string;
+  eyebrow?: string;
 }) {
   return (
     <Link href={href} className={styles.card}>
@@ -20,15 +22,17 @@ export default function CategoryCard({
           src={image}
           alt=""
           fill
-          sizes="(max-width: 760px) 50vw, 33vw"
+          sizes="(max-width: 760px) 90vw, 33vw"
           className={styles.img}
-          unoptimized={image.endsWith(".svg")}
         />
-        <span className={styles.overlay} aria-hidden="true" />
       </div>
       <div className={styles.meta}>
-        <span className={styles.label}>{label}</span>
+        <span className={`eyebrow ${styles.eyebrow}`}>{eyebrow}</span>
+        <h3 className={`h3 ${styles.label}`}>{label}</h3>
         {caption && <span className={styles.caption}>{caption}</span>}
+        <span className={`cartier-link ${styles.cta}`}>
+          View <span className="arrow">→</span>
+        </span>
       </div>
     </Link>
   );

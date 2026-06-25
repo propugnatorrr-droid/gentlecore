@@ -2,66 +2,124 @@ import Link from "next/link";
 import { site, whatsappLink, dossierMessage } from "@/lib/site";
 import styles from "./Footer.module.css";
 
-const nav = [
+const HOUSE = [
+  { href: "/about", label: "About" },
+  { href: "/atelier", label: "Atelier" },
+  { href: "/journal", label: "Journal" },
+  { href: "/source-request", label: "Source Request" },
+];
+
+const PIECES = [
+  { href: "/new-arrivals", label: "New Arrivals" },
+  { href: "/handbags", label: "Handbags" },
+  { href: "/watches", label: "Watches" },
+  { href: "/jewelry", label: "Jewelry" },
   { href: "/collection", label: "Collection" },
   { href: "/archive", label: "Archive" },
-  { href: "/journal", label: "Journal" },
-  { href: "/atelier", label: "Atelier" },
-  { href: "/source-request", label: "Source a Piece" },
+];
+
+const SERVICES = [
   { href: "/how-to-buy", label: "How to Buy" },
-  { href: "/contact", label: "Contact" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/atelier", label: "Authentication" },
+  { href: "/how-to-buy", label: "Discreet Delivery" },
+  { href: "/source-request", label: "Private Viewing" },
 ];
 
 export default function Footer() {
-  const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <div className={`shell ${styles.inner}`}>
-        <div className={styles.left}>
-          <span className={styles.wordmark}>Gentle Core</span>
-          <p className={styles.tagline}><em>Private luxury resale. Worldwide.</em></p>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.brandRow}>
+          <Link href="/" className={styles.wordmark}>
+            Gentle Core
+          </Link>
+          <p className={`body ${styles.brandLine}`}>
+            Private luxury resale, presented through dossiers. Worldwide.
+          </p>
         </div>
 
-        <nav className={styles.center} aria-label="Footer navigation">
-          {nav.map((l, i) => (
-            <span key={l.href}>
-              <Link href={l.href} className={styles.navLink}>{l.label}</Link>
-              {i < nav.length - 1 && <span className={styles.sep} aria-hidden="true" />}
-            </span>
-          ))}
-        </nav>
+        <div className={styles.grid}>
+          <div className={styles.col}>
+            <h4 className={`eyebrow ${styles.colHead}`}>House</h4>
+            <ul className={styles.list}>
+              {HOUSE.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className={styles.link}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <address className={styles.right}>
-          <p className={styles.contactLabel}>Private Enquiries</p>
-          <a
-            className={styles.contactLink}
-            href={whatsappLink(dossierMessage())}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            WhatsApp
-          </a>
-          <a className={styles.contactLink} href={`mailto:${site.email}`}>{site.email}</a>
-          <p className={styles.contactMuted}>{site.address.line1}</p>
-          <a
-            className={styles.instagramLink}
-            href={site.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Follow @{site.instagram}
-          </a>
-        </address>
-      </div>
+          <div className={styles.col}>
+            <h4 className={`eyebrow ${styles.colHead}`}>Pieces</h4>
+            <ul className={styles.list}>
+              {PIECES.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className={styles.link}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      <div className={`shell ${styles.bottom}`}>
-        <hr className="hairline" />
-        <p className={styles.legal}>
-          <em>
-            © {year} {site.legalName}. All rights reserved. {site.legalDisclaimer}
-          </em>
-        </p>
+          <div className={styles.col}>
+            <h4 className={`eyebrow ${styles.colHead}`}>Services</h4>
+            <ul className={styles.list}>
+              {SERVICES.map((l) => (
+                <li key={l.label}>
+                  <Link href={l.href} className={styles.link}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={styles.col}>
+            <h4 className={`eyebrow ${styles.colHead}`}>Contact</h4>
+            <ul className={styles.list}>
+              <li>
+                <a
+                  href={whatsappLink(dossierMessage())}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${site.email}`} className={styles.link}>
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={site.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr className={styles.divider} />
+
+        <div className={styles.legalRow}>
+          <p className={`eyebrow ${styles.legal}`}>
+            Gentle Core — Private Luxury Resale House. Worldwide.
+          </p>
+          <p className={`eyebrow ${styles.legal}`}>© 2026 Gentle Core</p>
+        </div>
+
+        <p className={`${styles.fineprint}`}>{site.legalDisclaimer}</p>
       </div>
     </footer>
   );

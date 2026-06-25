@@ -1,91 +1,45 @@
-﻿import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from "next";
 import PageIntro from "@/components/PageIntro";
 import SectionReveal from "@/components/SectionReveal";
-import styles from "../content.module.css";
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "Gentle Core is a private luxury resale house presenting rare handbags, watches, jewelry, and accessories for private acquisition worldwide.",
+  description: "The Gentle Core house philosophy.",
 };
+
+const paragraphs = [
+  "Gentle Core was founded on a simple observation: the most serious collectors of rare objects do not want a marketplace. They want a private line into a network they trust.",
+  "We are a small house. We work through closed relationships with private owners, specialist dealers, and trusted intermediaries — and we present each acquisition by private dossier rather than by open catalogue. The pieces we offer are not advertised; they are introduced.",
+  "Our reach is worldwide. A buyer in one capital may be matched with an owner in another within hours, with the piece in transit shortly after. Discretion is structural — it shapes how we source, how we communicate, and how we deliver.",
+  "Authentication is the foundation of everything we do. Each piece is examined by specialists trained on the specific house — Hermès, Rolex, Patek Philippe, Cartier — and graded against a private rubric that has been refined over years of handling. We disclose every condition note in full.",
+  "We do not believe that confidence is sold. We believe it is earned, quietly, through the consistency of small acts: the dossier that arrives within hours, the condition report that holds nothing back, the shipment that lands unmarked.",
+  "If this is the kind of relationship you have been looking for, the door is open. Send a quiet inquiry, and we will respond in kind.",
+];
 
 export default function AboutPage() {
   return (
     <>
       <PageIntro
-        label="About"
-        title="A private house for rare and considered pieces."
-        intro="Gentle Core is a private luxury resale house presenting collector handbags, watches, jewelry, and accessories — quietly, and for serious buyers worldwide."
+        label="The House"
+        title="A quiet house, by design."
+        intro="Gentle Core is a private resale house presenting rare pieces to a small worldwide audience of serious collectors."
       />
-
-      <section className="shell">
-        <SectionReveal className={styles.block}>
-          <h2 className={styles.blockLabel}>The House</h2>
-          <div className={styles.body}>
-            <h2>Curated, not catalogued.</h2>
-            <p>
-              We are not a marketplace. Each piece is selected by hand and presented through
-              a private dossier — price, condition, and provenance shared directly with the
-              buyer, never broadcast. The experience is intentional: unhurried, discreet, and
-              built around the piece.
-            </p>
-            <p>
-              We serve clients across the world. Many find us through
-              referral; others arrive seeking a single, specific grail. In both cases the
-              standard is the same.
-            </p>
-            <ul className={styles.facts}>
-              <li className={styles.fact}>
-                <span className={styles.factK}>Private Viewing</span>
-                <span className={styles.factV}>BY APPOINTMENT</span>
-              </li>
-              <li className={styles.fact}>
-                <span className={styles.factK}>Worldwide</span>
-                <span className={styles.factV}>BUYER INQUIRIES ACCEPTED</span>
-              </li>
-              <li className={styles.fact}>
-                <span className={styles.factK}>By Request</span>
-                <span className={styles.factV}>SOURCING THROUGH OUR NETWORK</span>
-              </li>
-            </ul>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className={styles.block}>
-          <h2 className={styles.blockLabel}>How We Work</h2>
-          <div className={styles.body}>
-            <h2>Clarity is the luxury.</h2>
-            <p>
-              Condition is described honestly. Set details are disclosed per piece.
-              Additional photographs and video are available before any acquisition. Nothing
-              is left to assumption — because confidence, not pressure, is what serious
-              collecting requires.
-            </p>
-            <p>
-              When a piece is not in our preview, we source it. Share your brief and we will
-              search through our network, returning only what genuinely fits.
-            </p>
-            <p>
-              Read more about the{" "}
-              <Link href="/how-to-buy">private acquisition process</Link>, or begin with a{" "}
-              <Link href="/source-request">private request</Link>.
-            </p>
-          </div>
-        </SectionReveal>
-
-        <SectionReveal className={styles.block}>
-          <h2 className={styles.blockLabel}>Independence</h2>
-          <div className={styles.body}>
-            <h2>An independent resale platform.</h2>
-            <p>
-              Gentle Core is an independent luxury resale platform and is not affiliated
-              with the brands featured. Brand names are used only to describe the genuine
-              pieces we present. All trademarks remain the property of their respective
-              owners.
-            </p>
-          </div>
-        </SectionReveal>
+      <section className="section">
+        <div
+          className="container"
+          style={{
+            maxWidth: 720,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(20px, 2.4vw, 32px)",
+          }}
+        >
+          {paragraphs.map((p, i) => (
+            <SectionReveal key={i} delay={i * 0.04}>
+              <p className="body body-lg">{p}</p>
+            </SectionReveal>
+          ))}
+        </div>
       </section>
     </>
   );

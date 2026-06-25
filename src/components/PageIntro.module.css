@@ -1,29 +1,40 @@
 .intro {
-  padding-top: calc(var(--nav-h) + var(--s6));
-  padding-bottom: var(--s4);
-  border-bottom: 1px solid var(--line);
+  padding-top: clamp(80px, 11vw, 140px);
+  padding-bottom: clamp(48px, 6vw, 80px);
 }
 
-.center { text-align: center; }
+.center {
+  text-align: center;
+}
 
-.center :global(.label),
-.center .title,
-.center .lede {
-  margin-inline: auto;
+.center .lede,
+.center .rule {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 28px;
 }
 
 .title {
-  font-size: var(--fs-h1);
-  margin-top: var(--s2);
-  max-width: 22ch;
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.018em;
+  margin-bottom: 40px;
+}
+
+.rule {
+  width: 56px;
+  border: 0;
+  border-top: 1px solid var(--ink);
+  margin: 0 0 40px;
 }
 
 .lede {
-  font-family: var(--serif);
-  font-size: var(--fs-h3);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--ink-soft);
-  max-width: var(--measure);
-  margin-top: var(--s3);
+  font-size: 17px;
+  color: var(--ink-60);
+  max-width: 60ch;
+  line-height: 1.7;
 }

@@ -5,20 +5,22 @@ import ProductGrid from "@/components/ProductGrid";
 
 export const metadata: Metadata = {
   title: "Watches",
-  description:
-    "Collector watches — Rolex, Patek Philippe, Audemars Piguet, Cartier — presented through private dossiers worldwide.",
+  description: "Collector watches presented by Gentle Core.",
 };
 
 export default function WatchesPage() {
+  const items = getByCategory("watches");
   return (
     <>
       <PageIntro
-        label="Watches"
-        title="Collector horology."
-        intro="Serious references, presented with full accompaniments where available. Box, papers, and condition notes are disclosed per piece in the private dossier."
+        label="House Discipline"
+        title="Watches"
+        intro="Collector references — Rolex, Patek Philippe, and others — verified, dated, and presented with their accompaniments."
       />
-      <section className="shell section">
-        <ProductGrid products={getByCategory("watches")} columns={4} />
+      <section className="section">
+        <div className="container">
+          <ProductGrid products={items} columns={3} />
+        </div>
       </section>
     </>
   );

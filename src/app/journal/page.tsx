@@ -1,57 +1,107 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { JOURNAL_POSTS } from "@/data/journal";
-import styles from "./journal.module.css";
+import PageIntro from "@/components/PageIntro";
+import SectionReveal from "@/components/SectionReveal";
 
 export const metadata: Metadata = {
   title: "Journal",
-  description:
-    "Perspectives on luxury objects — authentication, condition, provenance, and the practice of collecting.",
+  description: "Editorial dispatches from the house.",
 };
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  try {
+    return new Date(iso).toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  } catch {
+    return iso;
+  }
 }
 
 export default function JournalPage() {
-  return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <span className="eyebrow">The Journal</span>
-        <h1 className={styles.title}>Perspectives on rare objects.</h1>
-      </header>
+  const posts = JOURNAL_POSTS;
 
-      <div className={`shell ${styles.grid}`}>
-        {JOURNAL_POSTS.map((post, i) => (
-          <article key={post.slug} className={`${styles.card} ${i === 0 ? styles.cardFeatured : ""}`}>
-            <Link href={`/journal/${post.slug}`} className={styles.cardLink}>
-              <div className={styles.imageWrap}>
-                <Image
-                  src={`/products/${post.image}`}
-                  alt={post.title}
-                  fill
-                  sizes={i === 0 ? "80vw" : "(max-width: 768px) 90vw, 40vw"}
-                  className={styles.image}
-                  unoptimized
-                />
-              </div>
-              <div className={styles.cardMeta}>
-                <div className={styles.cardTop}>
-                  <span className={styles.category}>{post.category}</span>
-                  <time className={styles.date}>{formatDate(post.date)}</time>
-                </div>
-                <h2 className={styles.cardTitle}>{post.title}</h2>
-                <p className={styles.excerpt}>{post.excerpt}</p>
-              </div>
-            </Link>
-          </article>
-        ))}
-      </div>
-    </div>
+  return (
+    <>
+      <PageIntro
+        label="Editorial"
+        title="Journal"
+        intro="Dispatches on collecting, authentication, and the quiet discipline of fine objects."
+      />
+      <section className="section">
+        <div className="container">
+          {posts.length === 0 ? (
+            <p
+              className="body"
+              style={{
+                textAlign: "center",
+                color: "var(--ink-60)",
+                maxWidth: 480,
+                margin: "clamp(40px, 6vw, 80px) auto",
+              }}
+            >
+              Coming soon — editorial dispatches from the house.
+            </p>
+          ) : (
+            <ul
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "clamp(24px, 3vw, 48px)",
+              }}
+              className="journalGrid"
+            >
+              {posts.map((post, i) => (
+                <SectionReveal as="li" key={post.slug} delay={(i % 3) * 0.06}>
+                  <Link
+                    href={`/journal/${post.slug}`}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 16,
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        aspectRatio: "4 / 5",
+                        background: "var(--mist)",
+                        overflow: "hidden",
+                      }}
+                    />
+                    <span className="eyebrow">
+                      {formatDate(post.date)} · {post.category}
+                    </span>
+                    <h3 className="h3">{post.title}</h3>
+                    <p
+                      className="body"
+                      style={{ color: "var(--ink-60)", maxWidth: "40ch" }}
+                    >
+                      {post.excerpt}
+                    </p>
+                    <span className="cartier-link" style={{ marginTop: 8 }}>
+                      Read <span className="arrow">→</span>
+                    </span>
+                  </Link>
+                </SectionReveal>
+              ))}
+            </ul>
+          )}
+        </div>
+      </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .journalGrid { grid-template-columns: 1fr 1fr !important; }
+        }
+        @media (max-width: 600px) {
+          .journalGrid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </>
   );
 }

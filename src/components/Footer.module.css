@@ -1,129 +1,106 @@
 .footer {
-  background: var(--noir);
-  color: var(--ground);
-  padding-top: var(--space-2xl);
-  padding-bottom: var(--space-l);
-  margin-top: var(--space-xl);
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(80px, 10vw, 140px) 0 48px;
 }
 
 .inner {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: var(--space-l);
-  align-items: start;
-  padding-bottom: var(--space-l);
-}
-
-.left {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
+  gap: 64px;
+}
+
+.brandRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
 }
 
 .wordmark {
-  font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ground);
-  display: block;
-}
-
-.tagline {
-  font-family: var(--serif);
-  font-size: var(--fs-caption);
-  color: rgba(250,248,244,0.5);
+  font-family: var(--font-cormorant), Georgia, serif;
   font-style: italic;
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 56px);
+  letter-spacing: -0.012em;
+  line-height: 1;
+  color: var(--paper);
 }
 
-.center {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
+.brandLine {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
 }
 
-.navLink {
-  font-family: var(--sans);
-  font-size: var(--fs-label);
-  letter-spacing: var(--track);
-  text-transform: uppercase;
-  color: rgba(250,248,244,0.6);
-  transition: color 0.3s var(--ease);
-  white-space: nowrap;
-}
-.navLink:hover { color: var(--gold); }
-
-.sep {
-  display: inline-block;
-  width: 1px;
-  height: 10px;
-  background: rgba(250,248,244,0.2);
-  margin-inline: var(--space-s);
-  vertical-align: middle;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
 }
 
-.right {
+.col {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  font-style: normal;
+  gap: 20px;
 }
 
-.contactLabel {
-  font-family: var(--sans);
-  font-size: var(--fs-label);
-  letter-spacing: var(--track);
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.4rem;
+.colHead {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
 }
 
-.contactLink {
-  font-family: var(--sans);
-  font-size: var(--fs-sm);
-  color: rgba(250,248,244,0.7);
-  transition: color 0.3s var(--ease);
-}
-.contactLink:hover { color: var(--gold); }
-
-.contactMuted {
-  font-size: var(--fs-sm);
-  color: rgba(250,248,244,0.4);
-  margin-top: 0.2rem;
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.instagramLink {
-  font-family: var(--sans);
-  font-size: var(--fs-label);
-  letter-spacing: var(--track);
-  text-transform: uppercase;
-  color: rgba(250,248,244,0.4);
-  margin-top: var(--space-s);
-  transition: color 0.3s var(--ease);
+.link {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 200ms ease;
 }
-.instagramLink:hover { color: var(--gold); }
 
-.bottom {
-  padding-top: var(--space-m);
+.link:hover {
+  color: var(--paper);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin: 0;
+}
+
+.legalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .legal {
-  font-family: var(--serif);
-  font-size: var(--fs-caption);
-  color: rgba(250,248,244,0.3);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.fineprint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 62ch;
   line-height: 1.6;
-  margin-top: var(--space-s);
 }
 
-@media (max-width: 1080px) {
-  .inner { grid-template-columns: 1fr 1fr; gap: var(--space-m); }
-  .left { grid-column: 1 / -1; }
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
 }
 
-@media (max-width: 640px) {
-  .inner { grid-template-columns: 1fr; }
-  .center { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
-  .sep { display: none; }
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }

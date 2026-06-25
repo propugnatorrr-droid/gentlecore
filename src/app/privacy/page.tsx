@@ -1,46 +1,43 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import PageIntro from "@/components/PageIntro";
-import SectionReveal from "@/components/SectionReveal";
-import styles from "../content.module.css";
 
 export const metadata: Metadata = {
-  title: "Privacy & Terms",
-  description:
-    "Privacy and terms for Gentle Core — how enquiries and personal data are handled, and the terms under which pieces are presented.",
+  title: "Privacy",
+  description: "How Gentle Core handles personal information.",
 };
 
-const sections = [
+const sections: Array<{ heading: string; body: string[] }> = [
   {
-    label: "Privacy",
-    h: "How we handle your information",
+    heading: "What we collect",
     body: [
-      "Details you share through our forms or WhatsApp are used solely to respond to your enquiry and to present pieces relevant to your request. We do not sell or share your information with third parties for marketing.",
-      "We retain enquiry details only as long as needed to assist you, and you may request their removal at any time.",
+      `${site.name} collects only the information you provide directly: name, contact details, location, and the substance of any inquiry. We do not run advertising trackers and do not sell data to third parties.`,
     ],
   },
   {
-    label: "Authenticity",
-    h: "Authenticity & condition",
+    heading: "How we use it",
     body: [
-      "Pieces are presented honestly, with condition described and set details disclosed per piece. Additional photographs and video are available before any acquisition so that you can review thoroughly.",
-      "Where documentation accompanies a piece, it is noted in the dossier. We encourage every buyer to review the dossier in full before proceeding.",
+      "We use submitted information to respond to inquiries, prepare private dossiers, arrange delivery, and maintain the discreet records appropriate to a private resale house.",
     ],
   },
   {
-    label: "Acquisition",
-    h: "Pricing & acquisition",
+    heading: "How we store it",
     body: [
-      "No prices are listed publicly; each piece is presented for private acquisition, with price shared in the dossier. Availability is confirmed at the time of enquiry, as pieces may be reserved or move on.",
-      "Private viewing is by appointment. Worldwide buyer inquiries are accepted, with insured, discreet shipping arranged per destination. Any applicable duties or taxes are the responsibility of the recipient.",
+      "Inquiry records are stored on secured systems with access limited to authorised members of the house. Anonymised, aggregated traffic analytics may be used to maintain the site.",
     ],
   },
   {
-    label: "Independence",
-    h: "Trademarks & independence",
+    heading: "Your rights",
     body: [
-      site.legalDisclaimer,
-      "Brand names appear only to describe the genuine pieces we present. All trademarks and brand names remain the property of their respective owners.",
+      "You may request a copy of the information we hold on you, or its deletion, at any time by writing to " +
+        site.email +
+        ". We will respond within a reasonable period.",
+    ],
+  },
+  {
+    heading: "Updates",
+    body: [
+      "This statement may be revised from time to time. Material changes will be reflected here.",
     ],
   },
 ];
@@ -49,22 +46,40 @@ export default function PrivacyPage() {
   return (
     <>
       <PageIntro
-        label="Privacy & Terms"
-        title="Clear terms, privately held."
-        intro="How we handle enquiries and personal information, and the terms under which pieces are presented."
+        label="Statement"
+        title="Privacy"
+        intro="A short, plain statement on how we handle the information you share with the house."
       />
-      <section className="shell">
-        {sections.map((s) => (
-          <SectionReveal className={styles.block} key={s.h}>
-            <h2 className={styles.blockLabel}>{s.label}</h2>
-            <div className={styles.body}>
-              <h3>{s.h}</h3>
+      <section className="section">
+        <div
+          className="container"
+          style={{
+            maxWidth: 680,
+            display: "flex",
+            flexDirection: "column",
+            gap: "clamp(32px, 4vw, 48px)",
+          }}
+        >
+          {sections.map((s) => (
+            <div
+              key={s.heading}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+                borderTop: "1px solid var(--ink-10)",
+                paddingTop: 24,
+              }}
+            >
+              <h2 className="h3">{s.heading}</h2>
               {s.body.map((p, i) => (
-                <p key={i}>{p}</p>
+                <p key={i} className="body body-lg">
+                  {p}
+                </p>
               ))}
             </div>
-          </SectionReveal>
-        ))}
+          ))}
+        </div>
       </section>
     </>
   );

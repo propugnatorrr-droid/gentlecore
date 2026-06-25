@@ -1,15 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/data/products";
-import { isArchived } from "@/data/products";
+import StatusTag from "./StatusTag";
 import styles from "./ProductCard.module.css";
-
-const STATUS_COLOR: Record<string, string> = {
-  Available: "#4a7c59",
-  Reserved: "#c47c1a",
-  "Previously Presented": "#8a8276",
-  Acquired: "#8a8276",
-};
 
 export default function ProductCard({
   product,
@@ -18,10 +11,7 @@ export default function ProductCard({
   product: Product;
   priority?: boolean;
 }) {
-  const archived = isArchived(product);
-  const second = product.images[1];
-  const statusColor = STATUS_COLOR[product.status] ?? "#8a8276";
-
+  const cover = product.images[0];
   return (
     <article className={styles.card}>
       <Link
@@ -31,38 +21,19 @@ export default function ProductCard({
       >
         <div className={styles.frame}>
           <Image
-            src={`/products/${product.images[0]}`}
+            src={cover}
             alt={`${product.brand} ${product.model}`}
             fill
             sizes="(max-width: 640px) 90vw, (max-width: 1100px) 45vw, 30vw"
             className={styles.img}
             priority={priority}
-            unoptimized={product.images[0].endsWith(".svg")}
           />
-          {second && (
-            <Image
-              src={`/products/${second}`}
-              alt=""
-              aria-hidden="true"
-              fill
-              sizes="(max-width: 640px) 90vw, (max-width: 1100px) 45vw, 30vw"
-              className={styles.imgAlt}
-              unoptimized={second.endsWith(".svg")}
-            />
-          )}
         </div>
-
         <div className={styles.meta}>
-          <span className={styles.brand}>{product.brand}</span>
+          <span className={`eyebrow ${styles.brand}`}>{product.brand}</span>
           <h3 className={styles.model}>{product.model}</h3>
-          <div className={styles.foot}>
-            <span
-              className={styles.statusDot}
-              style={{ background: statusColor }}
-              aria-hidden="true"
-            />
-            <span className={styles.statusLabel}>{product.status}</span>
-          </div>
+          <p className={styles.detail}>{product.detailLine}</p>
+          <StatusTag status={product.status} />
         </div>
       </Link>
     </article>

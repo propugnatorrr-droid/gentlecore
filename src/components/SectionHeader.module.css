@@ -1,29 +1,32 @@
 .head {
   display: flex;
   flex-direction: column;
-  gap: var(--s2);
-  margin-bottom: var(--s5);
+  gap: 20px;
+  margin-bottom: 64px;
 }
 
 .center {
-  align-items: center;
   text-align: center;
+  align-items: center;
+}
+
+.label {
+  color: var(--ink-60);
 }
 
 .title {
-  font-size: var(--fs-h2);
   max-width: 22ch;
+  margin: 0;
 }
 
-.center .title {
-  max-width: 26ch;
+.center .title,
+.center .intro {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .intro {
-  font-family: var(--serif);
-  font-size: var(--fs-h3);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--ink-soft);
-  max-width: var(--measure);
+  color: var(--ink-60);
+  margin-top: 8px;
+  max-width: 58ch;
 }
